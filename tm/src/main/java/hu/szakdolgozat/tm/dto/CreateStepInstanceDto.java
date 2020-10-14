@@ -6,6 +6,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import hu.szakdolgozat.tm.entity.StepInstanceStatusEnum;
+
 public class CreateStepInstanceDto {
 
     @NotNull
@@ -15,8 +17,7 @@ public class CreateStepInstanceDto {
     private String comment;
     
     @NotNull
-    @Min(1)
-    private int statusId;
+    private StepInstanceStatusEnum status;
     
     @NotNull
     @Min(1)
@@ -45,12 +46,12 @@ public class CreateStepInstanceDto {
         this.comment = comment;
     }
 
-    public int getStatusId() {
-        return statusId;
+    public StepInstanceStatusEnum getStatus() {
+        return status;
     }
 
-    public void setStatusId(int statusId) {
-        this.statusId = statusId;
+    public void setStatus(StepInstanceStatusEnum status) {
+        this.status = status;
     }
 
     public Long getStepId() {
