@@ -30,7 +30,6 @@ public class ComponentInstanceEntity {
     @Column(name = "open_date")
     private Date openDate;
     
-    @NotNull
     @Column(name = "close_date")
     private Date closeDate;
     
