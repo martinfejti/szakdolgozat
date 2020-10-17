@@ -1,5 +1,7 @@
 package hu.szakdolgozat.tm.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -18,4 +20,6 @@ public abstract class CaseInstanceMapper {
     @Mapping(source = "testCase.id", target = "caseId")
     @Mapping(source = "componentInstance.id", target = "componentInstanceId")
     public abstract CaseInstanceDto mapCaseInstanceEntityToDto(CaseInstanceEntity entity);
+    
+    public abstract List<CaseInstanceDto> mapCaseInstanceEntityListToDtoList(List<CaseInstanceEntity> entityList);
 }

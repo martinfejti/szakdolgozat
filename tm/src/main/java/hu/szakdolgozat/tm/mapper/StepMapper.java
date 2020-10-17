@@ -1,5 +1,7 @@
 package hu.szakdolgozat.tm.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -15,4 +17,6 @@ public abstract class StepMapper {
     
     @Mapping(source = "testCase.id", target = "caseId")
     public abstract StepDto mapStepEntityToDto(StepEntity entity);
+    
+    public abstract List<StepDto> mapStepEntityListToDtoList(List<StepEntity> entityList);
 }

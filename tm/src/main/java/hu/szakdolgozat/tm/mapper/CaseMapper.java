@@ -1,5 +1,7 @@
 package hu.szakdolgozat.tm.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -15,4 +17,6 @@ public abstract class CaseMapper {
     
     @Mapping(source = "component.id", target = "componentId")
     public abstract CaseDto mapCaseEntityToDto(CaseEntity entity);
+    
+    public abstract List<CaseDto> mapCaseEntityListToDtoList(List<CaseDto> entityList);
 }
