@@ -22,7 +22,7 @@ public class CreateCaseDto {
     
     @NotNull
     @Size(min = 1)
-    private List<CreateStepDto> steps;
+    private List<StepDto> steps;
     
     public CreateCaseDto() {
     }
@@ -51,11 +51,11 @@ public class CreateCaseDto {
         this.componentId = componentId;
     }
 
-    public List<CreateStepDto> getSteps() {
+    public List<StepDto> getSteps() {
         return steps;
     }
 
-    public void setSteps(List<CreateStepDto> steps) {
+    public void setSteps(List<StepDto> steps) {
         this.steps = steps;
     }
 }
