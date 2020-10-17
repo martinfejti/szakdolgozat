@@ -1,5 +1,7 @@
 package hu.szakdolgozat.tm.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -14,4 +16,7 @@ public abstract class ProjectMapper {
     
     @Mapping(source = "componentEntities", target = "components")
     public abstract ProjectDto mapProjectEntityToDto(ProjectEntity entity);
+    
+    public abstract List<ProjectDto> mapProjectEntitiesToDtoList(List<ProjectEntity> entities);
+    
 }
