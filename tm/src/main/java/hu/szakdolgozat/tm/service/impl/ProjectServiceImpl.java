@@ -39,9 +39,11 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public ProjectDto updateProject(ProjectDto projectDto) throws Exception {
-        // TODO implement mapper method, also maybe update dtos are required
+        ProjectEntity projectEntity = PROJECT_MAPPER.mapProjectDtoToEntity(projectDto);
         
-        return projectDto;
+        this.generalRepository.updateEntity(projectEntity);
+        
+        return PROJECT_MAPPER.mapProjectEntityToDto(projectEntity);
     }
 
     @Override
