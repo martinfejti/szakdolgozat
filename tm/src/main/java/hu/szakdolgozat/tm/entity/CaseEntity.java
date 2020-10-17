@@ -20,7 +20,6 @@ import javax.validation.constraints.NotNull;
 public class CaseEntity {
     
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;

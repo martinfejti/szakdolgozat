@@ -15,7 +15,6 @@ import javax.validation.constraints.NotNull;
 public class StepInstanceStatusEntity {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
