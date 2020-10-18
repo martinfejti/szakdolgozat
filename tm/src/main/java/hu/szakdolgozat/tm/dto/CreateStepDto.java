@@ -21,10 +21,6 @@ public class CreateStepDto {
     @Size(max = 50)
     private String comment;
     
-    @NotNull
-    @Min(1)
-    private Long caseId;
-    
     public CreateStepDto() {
     }
 
@@ -60,11 +56,4 @@ public class CreateStepDto {
         this.comment = comment;
     }
 
-    public Long getCaseId() {
-        return caseId;
-    }
-
-    public void setCaseId(Long caseId) {
-        this.caseId = caseId;
-    }
 }

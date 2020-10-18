@@ -15,6 +15,13 @@ public abstract class StepMapper {
     @Mapping(source = "caseId", target = "testCase.id")
     public abstract StepEntity mapCreateStepDtoToEntity(CreateStepDto createDto);
     
+    public abstract List<StepEntity> mapCreateStepDtoListToEntityList(List<CreateStepDto> createDtoList);
+    
+    @Mapping(source = "caseId", target = "testCase.id")
+    public abstract StepEntity mapStepDtoToEntity(StepDto stepDto);
+    
+    public abstract List<StepEntity> mapStepDtoListToEntityList(List<StepDto> stepDtoList);
+    
     @Mapping(source = "testCase.id", target = "caseId")
     public abstract StepDto mapStepEntityToDto(StepEntity entity);
     

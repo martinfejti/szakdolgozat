@@ -37,11 +37,11 @@ public class CaseEntity {
     @JoinColumn(name = "component_id", nullable = false)
     private ComponentEntity component;
     
-    @OneToMany(mappedBy = "testCase", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "testCase", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<StepEntity> steps;
     
-    @OneToMany(mappedBy = "testCase", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<CaseInstanceEntity> caseInstances;
+    // @OneToMany(mappedBy = "testCase", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    // private List<CaseInstanceEntity> caseInstances;
     
     public CaseEntity() {
     }
@@ -86,6 +86,7 @@ public class CaseEntity {
         this.steps = steps;
     }
 
+    /*
     public List<CaseInstanceEntity> getCaseInstances() {
         return caseInstances;
     }
@@ -93,4 +94,5 @@ public class CaseEntity {
     public void setCaseInstances(List<CaseInstanceEntity> caseInstances) {
         this.caseInstances = caseInstances;
     }
+    */
 }

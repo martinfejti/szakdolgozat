@@ -15,6 +15,10 @@ public abstract class CaseMapper {
     @Mapping(source = "componentId", target = "component.id")
     public abstract CaseEntity mapCreateCaseDtoToEntity(CreateCaseDto createDto);
     
+    @Mapping(source = "componentId", target = "component.id")
+    @Mapping(source = "steps", target = "steps")
+    public abstract CaseEntity mapCaseDtoToEntity(CaseDto caseDto);
+    
     @Mapping(source = "component.id", target = "componentId")
     public abstract CaseDto mapCaseEntityToDto(CaseEntity entity);
     

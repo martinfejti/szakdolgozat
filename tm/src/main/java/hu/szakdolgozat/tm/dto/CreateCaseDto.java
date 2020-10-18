@@ -20,9 +20,8 @@ public class CreateCaseDto {
     @Min(1)
     private Long componentId;
     
-    @NotNull
     @Size(min = 1)
-    private List<StepDto> steps;
+    private List<CreateStepDto> steps;
     
     public CreateCaseDto() {
     }
@@ -51,11 +50,11 @@ public class CreateCaseDto {
         this.componentId = componentId;
     }
 
-    public List<StepDto> getSteps() {
+    public List<CreateStepDto> getSteps() {
         return steps;
     }
 
-    public void setSteps(List<StepDto> steps) {
+    public void setSteps(List<CreateStepDto> steps) {
         this.steps = steps;
     }
 }

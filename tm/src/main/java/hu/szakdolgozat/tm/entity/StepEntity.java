@@ -44,8 +44,8 @@ public class StepEntity {
     @JoinColumn(name = "case_id", nullable = false)
     private CaseEntity testCase;
     
-    @OneToMany(mappedBy = "step", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<StepInstanceEntity> stepInstances;
+    // @OneToMany(mappedBy = "step", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    // private List<StepInstanceEntity> stepInstances;
     
     public StepEntity() {
     }
@@ -98,6 +98,7 @@ public class StepEntity {
         this.testCase = testCase;
     }
 
+    /*
     public List<StepInstanceEntity> getStepInstances() {
         return stepInstances;
     }
@@ -105,4 +106,6 @@ public class StepEntity {
     public void setStepInstances(List<StepInstanceEntity> stepInstances) {
         this.stepInstances = stepInstances;
     }
+    
+    */
 }
