@@ -10,4 +10,6 @@ public interface ComponentInstanceRepository {
     
     public List<ComponentInstanceEntity> getAllComponentInstances() throws Exception;
     
+    public ComponentInstanceEntity getComponentInstanceEntityById(Long id) throws Exception;
+    
 }

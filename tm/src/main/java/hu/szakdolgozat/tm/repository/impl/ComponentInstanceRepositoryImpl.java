@@ -50,4 +50,20 @@ public class ComponentInstanceRepositoryImpl implements ComponentInstanceReposit
         
         return resultList;
     }
+
+    @Override
+    public ComponentInstanceEntity getComponentInstanceEntityById(Long id) throws Exception {
+        ComponentInstanceEntity result = null;
+        
+        try {
+            TypedQuery<ComponentInstanceEntity> query = this.entityManager.createQuery("SELECT ci FROM ComponentInstance ci WHERE id = :id", ComponentInstanceEntity.class);
+            query.setParameter("id", id);
+            
+            result = query.getSingleResult();
+        } catch (RuntimeException e) {
+            throw new Exception(e);
+        }
+        
+        return result;
+    }
 }
