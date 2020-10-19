@@ -52,4 +52,20 @@ public class CaseInstanceRepositoryImpl implements CaseInstanceRepository {
         return resultList;
     }
 
+    @Override
+    public CaseInstanceEntity getCaseInstanceById(Long id) throws Exception {
+        CaseInstanceEntity result = null;
+        
+        try {
+            TypedQuery<CaseInstanceEntity> query = this.entityManager.createQuery("SELECT ci FROM CaseInstance ci WHERE id = :id", CaseInstanceEntity.class);
+            query.setParameter("id", id);
+            
+            result = query.getSingleResult();
+        } catch (RuntimeException e) {
+            throw new Exception(e);
+        }
+        
+        return result;
+    }
+
 }

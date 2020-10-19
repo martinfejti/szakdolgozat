@@ -9,4 +9,6 @@ public interface CaseInstanceRepository {
     public List<CaseInstanceEntity> getCaseInstanceListByCaseId(Long id) throws Exception;
     
     public List<CaseInstanceEntity> getCaseInstanceListByComponentInstanceId(Long id) throws Exception;
+    
+    public CaseInstanceEntity getCaseInstanceById(Long id) throws Exception;
 }
