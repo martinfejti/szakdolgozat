@@ -64,7 +64,7 @@ public class CaseServiceImpl implements CaseService {
         
         if (caseEntity.getSteps().size() == updateDto.getSteps().size()) { // if old and updated case has the same number of steps then its just simple update
             for (int i = 0; i < caseEntity.getSteps().size(); i++) {
-                StepEntity stepEntity = this.stepRepository.getStepEntityById(updateDto.getId());
+                StepEntity stepEntity = this.stepRepository.getStepEntityById(caseEntity.getSteps().get(i).getId());
                 setUpdatedFieldsToStep(stepEntity, updateDto.getSteps().get(i), caseEntity);
                 
                 this.generalRepository.updateEntity(stepEntity);

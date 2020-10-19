@@ -15,6 +15,7 @@ public abstract class StepInstanceMapper {
     @Mapping(source = "status", target = "stepInstanceStatus.stepInstanceStatus")
     @Mapping(source = "stepId", target = "step.id")
     @Mapping(source = "caseInstanceId", target = "caseInstance.id")
+    @Mapping(target = "testDate", ignore = true)
     public abstract StepInstanceEntity mapCreateStepInstanceDtoToEntity(CreateStepInstanceDto createDto);
     
     @Mapping(source = "stepInstanceStatus.stepInstanceStatus", target = "status")

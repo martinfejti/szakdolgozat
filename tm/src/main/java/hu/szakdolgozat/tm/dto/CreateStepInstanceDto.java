@@ -1,7 +1,5 @@
 package hu.szakdolgozat.tm.dto;
 
-import java.util.Date;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -10,9 +8,6 @@ import hu.szakdolgozat.tm.entity.StepInstanceStatusEnum;
 
 public class CreateStepInstanceDto {
 
-    @NotNull
-    private Date testDate;
-    
     @Size(max = 50)
     private String comment;
     
@@ -28,14 +23,6 @@ public class CreateStepInstanceDto {
     private Long caseInstanceId;
     
     public CreateStepInstanceDto() {
-    }
-
-    public Date getTestDate() {
-        return testDate;
-    }
-
-    public void setTestDate(Date testDate) {
-        this.testDate = testDate;
     }
 
     public String getComment() {
