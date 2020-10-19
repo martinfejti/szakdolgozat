@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hu.szakdolgozat.tm.dto.CaseDto;
 import hu.szakdolgozat.tm.dto.CreateCaseDto;
+import hu.szakdolgozat.tm.dto.UpdateCaseDto;
 import hu.szakdolgozat.tm.service.CaseService;
 
 @CrossOrigin
@@ -38,8 +39,8 @@ public class CaseController {
     }
     
     @PutMapping
-    public CaseDto updateCase(@Valid @RequestBody CaseDto caseDto) throws Exception {
-        return this.caseService.updateCase(caseDto);
+    public CaseDto updateCase(@Valid @RequestBody UpdateCaseDto updateDto) throws Exception {
+        return this.caseService.updateCase(updateDto);
     }
     
     @DeleteMapping("/{id}")

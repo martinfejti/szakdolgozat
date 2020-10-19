@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hu.szakdolgozat.tm.dto.StepDto;
+import hu.szakdolgozat.tm.dto.UpdateStepDto;
 import hu.szakdolgozat.tm.entity.StepEntity;
 import hu.szakdolgozat.tm.mapper.StepMapper;
 import hu.szakdolgozat.tm.repository.GeneralRepository;
@@ -28,8 +29,11 @@ public class StepServiceImpl implements StepService {
     }
 
     @Override
-    public StepDto updateStep(StepDto stepDto) throws Exception {
-        StepEntity stepEntity = STEP_MAPPER.mapStepDtoToEntity(stepDto);
+    public StepDto updateStep(UpdateStepDto updateDto) throws Exception {
+        StepEntity stepEntity = this.stepRepository.getStepEntityById(updateDto.getId());
+        stepEntity.setDescription(updateDto.getDescription());
+        stepEntity.setExpectedResult(updateDto.getExpectedResult());
+        stepEntity.setComment(updateDto.getComment());
         
         this.generalRepository.updateEntity(stepEntity);
         

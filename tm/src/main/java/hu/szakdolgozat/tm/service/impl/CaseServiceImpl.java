@@ -8,10 +8,15 @@ import org.springframework.stereotype.Service;
 
 import hu.szakdolgozat.tm.dto.CaseDto;
 import hu.szakdolgozat.tm.dto.CreateCaseDto;
+import hu.szakdolgozat.tm.dto.UpdateCaseDto;
+import hu.szakdolgozat.tm.dto.UpdateStepDto;
 import hu.szakdolgozat.tm.entity.CaseEntity;
+import hu.szakdolgozat.tm.entity.StepEntity;
 import hu.szakdolgozat.tm.mapper.CaseMapper;
 import hu.szakdolgozat.tm.repository.CaseRepository;
+import hu.szakdolgozat.tm.repository.ComponentRepository;
 import hu.szakdolgozat.tm.repository.GeneralRepository;
+import hu.szakdolgozat.tm.repository.StepRepository;
 import hu.szakdolgozat.tm.service.CaseService;
 
 @Service
@@ -23,7 +28,13 @@ public class CaseServiceImpl implements CaseService {
     private GeneralRepository generalRepository;
     
     @Autowired
+    private ComponentRepository componentRepository;
+    
+    @Autowired
     private CaseRepository caseRepository;
+    
+    @Autowired
+    private StepRepository stepRepository;
     
     public CaseServiceImpl() {
     }
@@ -43,17 +54,34 @@ public class CaseServiceImpl implements CaseService {
     }
 
     @Override
-    public CaseDto updateCase(CaseDto caseDto) throws Exception {
-        CaseEntity caseEntity = CASE_MAPPER.mapCaseDtoToEntity(caseDto);
+    public CaseDto updateCase(UpdateCaseDto updateDto) throws Exception {
+        CaseEntity caseEntity = this.caseRepository.getCaseEntityById(updateDto.getId());
+        caseEntity.setName(updateDto.getName());
+        caseEntity.setDescription(updateDto.getDescription());
+        caseEntity.setComponent(this.componentRepository.getComponentEntityById(updateDto.getComponentId()));
         
         this.generalRepository.updateEntity(caseEntity);
         
-        for (int i = 0; i < caseEntity.getSteps().size(); i++) {
-            this.generalRepository.updateEntity(caseEntity.getSteps().get(i));
+        if (caseEntity.getSteps().size() == updateDto.getSteps().size()) { // if old and updated case has the same number of steps then its just simple update
+            for (int i = 0; i < caseEntity.getSteps().size(); i++) {
+                StepEntity stepEntity = this.stepRepository.getStepEntityById(updateDto.getId());
+                setUpdatedFieldsToStep(stepEntity, updateDto.getSteps().get(i), caseEntity);
+                
+                this.generalRepository.updateEntity(stepEntity);
+            }
+        } else { // if the numbers are different then delete old steps and create new ones from dto
+            for (int i = 0; i < caseEntity.getSteps().size(); i++) {
+                this.generalRepository.deleteEntity(caseEntity.getSteps().get(i));
+            }
+            for (int i = 0; i < updateDto.getSteps().size(); i++) {
+                StepEntity stepEntity = new StepEntity();
+                setUpdatedFieldsToStep(stepEntity, updateDto.getSteps().get(i), caseEntity);
+                
+                this.generalRepository.createEntity(stepEntity);
+            }
         }
         
-        // caseEntity.getCaseInstances().clear();
-        
+        // return the steps that were present before the delele-create process (anyway it works)
         return CASE_MAPPER.mapCaseEntityToDto(caseEntity);
     }
 
@@ -69,5 +97,13 @@ public class CaseServiceImpl implements CaseService {
         List<CaseEntity> caseEntityList = this.caseRepository.getCaseEntityListByComponentId(id);
         
         return CASE_MAPPER.mapCaseEntityListToDtoList(caseEntityList);
+    }
+
+    private void setUpdatedFieldsToStep(StepEntity stepEntity, UpdateStepDto updateStepDto, CaseEntity caseEntity) {
+        stepEntity.setDescription(updateStepDto.getDescription());
+        stepEntity.setExpectedResult(updateStepDto.getExpectedResult());
+        stepEntity.setComment(updateStepDto.getComment());
+        stepEntity.setTestCase(caseEntity);
+        stepEntity.setOrderNumber(updateStepDto.getOrderNumber());
     }
 }

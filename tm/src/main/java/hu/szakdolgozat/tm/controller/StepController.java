@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import hu.szakdolgozat.tm.dto.StepDto;
+import hu.szakdolgozat.tm.dto.UpdateStepDto;
 import hu.szakdolgozat.tm.service.StepService;
 
 @CrossOrigin
@@ -30,8 +31,8 @@ public class StepController {
     }
     
     @PutMapping
-    public StepDto updateStep(@RequestBody @Valid StepDto stepDto) throws Exception {
-        return this.stepService.updateStep(stepDto);
+    public StepDto updateStep(@RequestBody @Valid UpdateStepDto updateDto) throws Exception {
+        return this.stepService.updateStep(updateDto);
     }
     
     @GetMapping("/{id}")

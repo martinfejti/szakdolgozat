@@ -40,8 +40,8 @@ public class CaseEntity {
     @OneToMany(mappedBy = "testCase", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<StepEntity> steps;
     
-    // @OneToMany(mappedBy = "testCase", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    // private List<CaseInstanceEntity> caseInstances;
+    @OneToMany(mappedBy = "testCase", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<CaseInstanceEntity> caseInstances;
     
     public CaseEntity() {
     }

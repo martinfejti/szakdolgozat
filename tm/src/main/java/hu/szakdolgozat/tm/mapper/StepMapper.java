@@ -12,7 +12,6 @@ import hu.szakdolgozat.tm.entity.StepEntity;
 @Mapper
 public abstract class StepMapper {
 
-    @Mapping(source = "caseId", target = "testCase.id")
     public abstract StepEntity mapCreateStepDtoToEntity(CreateStepDto createDto);
     
     public abstract List<StepEntity> mapCreateStepDtoListToEntityList(List<CreateStepDto> createDtoList);
