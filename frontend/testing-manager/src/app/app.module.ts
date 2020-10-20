@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ProjectListComponent } from './project-list/project-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ProjectService } from './../services/project.service';
 
 @NgModule({
   declarations: [
@@ -10,9 +12,12 @@ import { ProjectListComponent } from './project-list/project-list.component';
     ProjectListComponent
   ],
   imports: [
-    BrowserModule
+  HttpClientModule,
+  BrowserModule
   ],
-  providers: [],
+  providers: [
+    ProjectService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

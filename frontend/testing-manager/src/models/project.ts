@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-export interface Component {
+export interface Project {
     id: number;
     name: string;
     shortDescription: string;
