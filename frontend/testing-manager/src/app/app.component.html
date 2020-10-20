@@ -3,7 +3,7 @@
     <a href="#" class="logo">TestingManager</a>
     <nav>
       <ul>
-        <li><a href="#">User's Guide</a></li>
+        <li><a href="#" (click)="changeSelectedView('USERS_GUIDE')">User's Guide</a></li>
       </ul>
     </nav>
   </div>
@@ -13,43 +13,24 @@
   <div id="project-list-div">
       Project List
       <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-
     </div>
     
     <div id="details-page-div">
-      Details Page
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
-      <p>indul</p>
+      <ng-container *ngIf="selectedView == 'PROJECT_DETAILS'">
+        Project Details
+      </ng-container>
+      <ng-container *ngIf="selectedView == 'USERS_GUIDE'">
+        User's Guide Page
+      </ng-container>
+      <ng-container *ngIf="selectedView == 'COMPONENT_DETAILS'">
+        COMPONENT_DETAILS Page
+      </ng-container>
+      <ng-container *ngIf="selectedView == 'CASE_DETAILS'">
+        CASE_DETAILS Page
+      </ng-container>
+      <ng-container *ngIf="selectedView == 'RUN_TEST'">
+        RUN_TEST Page
+      </ng-container>
     </div>
 </div>
 
