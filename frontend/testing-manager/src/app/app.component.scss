@@ -1,0 +1,22 @@
+#content-container-div {
+    width: 100%;
+    display: flex;
+    height: 93vh;
+    overflow-y: auto;
+}
+
+#project-list-div {
+    flex: 0 0 25%;
+    border: 3px solid lightgray;
+    padding: 1em;
+    overflow-y: auto;
+}
+
+#details-page-div {
+    flex: 1;
+    border-bottom: 3px solid lightgray;
+    border-top: 3px solid lightgray;
+    border-right: 3px solid lightgray;
+    padding: 1em;
+    overflow-y: auto;
+}
