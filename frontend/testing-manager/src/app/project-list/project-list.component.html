@@ -1,1 +1,6 @@
-<p>project-list works!</p>
+<ng-container *ngIf="projects">
+        <ng-container *ngFor="let project of projects">
+                <p> - {{project.name}}</p>
+            </ng-container>
+</ng-container>
+

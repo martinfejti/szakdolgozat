@@ -15,8 +15,10 @@
         <p>Project List</p>
         maybe some little buttons here (egy csokorba)
       </div>
-      <div id="project-list-list-div">
-        NEW COMPONENT
+      <div id="project-list-list-div" *ngIf="projects">
+        <app-project-list
+          [projects] = "projects"
+        ></app-project-list>
       </div>
     </div>
     
