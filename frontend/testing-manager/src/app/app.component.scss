@@ -1,3 +1,5 @@
+$primary: rgb(111, 0, 225);
+
 #content-container-div {
     width: 100%;
     display: flex;
@@ -27,10 +29,37 @@
         font-size: 24px;
         font-weight: bold;
     }
+    button {
+        /*background-color: $primary;
+        color: white;
+        width: 50%;
+        margin-left: 25%;
+        height: 20%;*/
+        display: inline-block;
+        padding: 0.35em 1.2em;
+        border: 0.1em solid #FFFFFF;
+        width: 50%;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        text-decoration: none;
+        background-color: $primary;
+        font-weight: 500;
+        color: #FFFFFF;
+        text-align: center;
+        transition: all 0.2s;
+        margin-left: 25%;
+        cursor: pointer;
+
+        &:hover {
+            background-color: white;
+            color: $primary;
+            border: 0.1em solid $primary;
+        }
+    }
 }
 
 #project-list-list-div {
     padding: 1em;
-    height: 80%;
+    height: 78%;
     overflow: auto;
 }
