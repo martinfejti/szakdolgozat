@@ -1,6 +1,9 @@
 <ng-container *ngIf="projects">
-        <ng-container *ngFor="let project of projects">
-                <p> - {{project.name}}</p>
-            </ng-container>
+        <div id="project-list-container-div">
+                <ng-container *ngFor="let project of projects">
+                        <p> - {{project.name}}</p>
+                </ng-container>
+
+        </div>     
 </ng-container>
 
