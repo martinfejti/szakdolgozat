@@ -21,6 +21,13 @@ $primary: rgb(111, 0, 225);
     border-right: 3px solid lightgray;
     padding: 1em;
     overflow-y: auto;
+
+    .details-inner-div {
+        border: 3px solid lightgray;
+        border-radius: 5px;
+        height: 100%;
+        width: 100%;
+    }
 }
 
 #project-list-header-div {

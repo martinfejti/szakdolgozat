@@ -23,21 +23,23 @@
     </div>
     
     <div id="details-page-div">
-      <ng-container *ngIf="selectedView == 'PROJECT_DETAILS'">
-        Project Details
-      </ng-container>
-      <ng-container *ngIf="selectedView == 'USERS_GUIDE'">
-        User's Guide Page
-      </ng-container>
-      <ng-container *ngIf="selectedView == 'COMPONENT_DETAILS'">
-        COMPONENT_DETAILS Page
-      </ng-container>
-      <ng-container *ngIf="selectedView == 'CASE_DETAILS'">
-        CASE_DETAILS Page
-      </ng-container>
-      <ng-container *ngIf="selectedView == 'RUN_TEST'">
-        RUN_TEST Page
-      </ng-container>
+      <div class="details-inner-div">
+          <ng-container *ngIf="selectedView == 'PROJECT_DETAILS'">
+            Project Details
+          </ng-container>
+          <ng-container *ngIf="selectedView == 'USERS_GUIDE'">
+            User's Guide Page
+          </ng-container>
+          <ng-container *ngIf="selectedView == 'COMPONENT_DETAILS'">
+            COMPONENT_DETAILS Page
+          </ng-container>
+          <ng-container *ngIf="selectedView == 'CASE_DETAILS'">
+            CASE_DETAILS Page
+          </ng-container>
+          <ng-container *ngIf="selectedView == 'RUN_TEST'">
+            RUN_TEST Page
+          </ng-container>
+      </div>
     </div>
 </div>
 <app-add-project></app-add-project>
