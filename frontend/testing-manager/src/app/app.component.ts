@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProjectService } from './../services/project.service';
 import { Project } from './../models/project';
 
@@ -12,12 +12,16 @@ export class AppComponent {
   selectedView: string;
   projects: Project[];
 
-  constructor(@Inject(ProjectService) private projectService: ProjectService) {
+  constructor(private projectService: ProjectService) {
     this.selectedView = 'PROJECT_DETAILS';
   }
 
   ngOnInit() {
     this.getAllProjects();
+
+    this.projectService.addedProjectObservable.subscribe(() => {
+      this.getAllProjects();
+    });
   }
 
   changeSelectedView(type: 'PROJECT_DETAILS' | 'COMPONENT_DETAILS' | 'CASE_DETAILS' | 'RUN_TEST' | 'USERS_GUIDE' | undefined) {

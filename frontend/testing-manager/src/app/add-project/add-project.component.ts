@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { Project } from './../../models/project';
 import { AddProjectService } from './add-project.service';
+import { ProjectService } from './../../services/project.service';
 
 @Component({
   selector: 'app-add-project',
@@ -18,7 +19,7 @@ export class AddProjectComponent implements OnInit {
   };
   @ViewChild('closeBtn', {static: false}) closeBtn: ElementRef;
 
-  constructor(@Inject(AddProjectService) private addProjectService: AddProjectService) { }
+  constructor(@Inject(AddProjectService) private addProjectService: AddProjectService, private projectService: ProjectService) { }
 
   ngOnInit() {
   }
@@ -28,7 +29,9 @@ export class AddProjectComponent implements OnInit {
       this.addProjectService.addProject(this.project).subscribe(result => {
         console.log('Project created', result);
         this.closeBtn.nativeElement.click();
+        this.projectService.notifyProjectCreation();
       }, error => {
+        alert('A problem has occured during project creation!');
         console.log(error);
       });
     } else {
