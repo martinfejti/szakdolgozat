@@ -6,12 +6,14 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectService } from './../services/project.service';
 import { ProjectListElementComponent } from './project-list-element/project-list-element.component';
+import { AddProjectComponent } from './add-project/add-project.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectListComponent,
-    ProjectListElementComponent
+    ProjectListElementComponent,
+    AddProjectComponent
   ],
   imports: [
   HttpClientModule,

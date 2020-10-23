@@ -20,7 +20,7 @@ body {
 header {
     background: $primary;
     padding: 1em 0;
-    height: 2vh;
+    height: 7vh;
 
     a {
         color: white;
@@ -29,6 +29,11 @@ header {
 
     a.logo {
         font-weight: bold;
+
+        &:hover {
+            text-decoration: none;
+            color: white;
+        }
     }
 
     nav {
@@ -40,10 +45,12 @@ header {
             display: flex;
 
             li a {
-                padding: 1em; 
+                // padding: 1em; 
 
                 &:hover {
                     background: darken($primary, 10%);
+                    text-decoration: none;
+                    color: white;
                 }
             }
         }
