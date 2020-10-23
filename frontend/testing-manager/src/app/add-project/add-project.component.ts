@@ -24,12 +24,16 @@ export class AddProjectComponent implements OnInit {
   }
 
   addProject() {
-    this.addProjectService.addProject(this.project).subscribe(result => {
-      console.log('Project created', result);
-      this.closeBtn.nativeElement.click();
-    }, error => {
-      console.log(error);
-    });
+    if (this.project.name && this.project.shortDescription) {
+      this.addProjectService.addProject(this.project).subscribe(result => {
+        console.log('Project created', result);
+        this.closeBtn.nativeElement.click();
+      }, error => {
+        console.log(error);
+      });
+    } else {
+      alert('Name and short description fields are required!');
+    }
   }
 
 }
