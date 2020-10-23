@@ -9,13 +9,15 @@ import { ProjectService } from './../services/project.service';
 import { AddProjectService } from './add-project/add-project.service';
 import { ProjectListElementComponent } from './project-list-element/project-list-element.component';
 import { AddProjectComponent } from './add-project/add-project.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectListComponent,
     ProjectListElementComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    ProjectDetailsComponent
   ],
   imports: [
   HttpClientModule,
