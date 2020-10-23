@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 export class ProjectService {
 
   addedProjectObservable = new Subject();
+  selectedProjectObservable = new Subject();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -18,5 +19,9 @@ export class ProjectService {
 
   notifyProjectCreation() {
     this.addedProjectObservable.next();
+  }
+
+  notifySelectedProject(project: Project) {
+    this.selectedProjectObservable.next(project);
   }
 }
