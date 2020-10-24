@@ -13,6 +13,7 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { EditProjectService } from './edit-project/edit-project.service';
 import { ComponentListElementComponent } from './component-list-element/component-list-element.component';
+import { ComponentDetailsComponent } from './component-details/component-details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ComponentListElementComponent } from './component-list-element/componen
     AddProjectComponent,
     ProjectDetailsComponent,
     EditProjectComponent,
-    ComponentListElementComponent
+    ComponentListElementComponent,
+    ComponentDetailsComponent
   ],
   imports: [
   HttpClientModule,
