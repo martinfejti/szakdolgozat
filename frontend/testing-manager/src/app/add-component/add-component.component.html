@@ -1,1 +1,39 @@
-<p>add-component works!</p>
+<ng-container *ngIf="parentProject">
+    <div class="modal fade" id="addNewComponentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" id="modal-header-div">
+                        <h5 class="modal-title" id="exampleModalLabel">Create New Component</h5>
+                        <button type="button" #closeBtn class="close" data-dismiss="modal" aria-label="Close" id="close-button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+            
+            
+                        <form>
+                            <div class="form-group">
+                                <label for="componentName">Name</label>
+                                <input name="componentName" [(ngModel)]="component.name" type="text" class="form-control" id="inputName" aria-describedby="emailHelp" placeholder="Type in the name">
+                            </div>
+                            <div class="form-group">
+                                <label for="componentDescription">Description</label>
+                                <input name="componentDescription" [(ngModel)]="component.description" type="text" class="form-control" id="inputName" aria-describedby="emailHelp" placeholder="Type in the description">
+                            </div>
+                            <div class="form-group">
+                                <label for="componentAuthor">Author</label>
+                                <input name="componentAuthor" [(ngModel)]="component.author" type="text" class="form-control" id="inputName" aria-describedby="emailHelp" placeholder="Type in the author">
+                            </div>
+                            <div class="form-group">
+                                    <label for="componentVersion">Version</label>
+                                    <input name="componentVersion" [(ngModel)]="component.version" type="text" class="form-control" id="inputName" aria-describedby="emailHelp" placeholder="Type in the version">
+                                </div>
+                            <button type="button" (click)="addComponent()" id="create-component-button" class="btn btn-primary">Create</button>
+                        </form>
+            
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+</ng-container>

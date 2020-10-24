@@ -36,6 +36,7 @@ export class AppComponent {
     });
 
     this.projectService.selectedProjectObservable.subscribe((result) => {
+      console.log('new proiject', result);
       this.selectedProject = result;
       this.selectedView = 'PROJECT_DETAILS';
     });
