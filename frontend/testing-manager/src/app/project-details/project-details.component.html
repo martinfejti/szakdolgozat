@@ -4,7 +4,7 @@
         <div id="project-buttons-div">
             <div class="btn-group">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProjectModal">Edit</button>
-                <button type="button" class="btn btn-primary">Delete</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteProjectModal">Delete</button>
             </div>
         </div>
     </div>
@@ -28,3 +28,29 @@
     </div>
 </ng-container>
 <app-edit-project [project]="project"></app-edit-project>
+<div>
+        <div class="modal fade" id="deleteProjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" id="modal-header-div">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete Project</h5>
+                            <button type="button" #closeBtn class="close" data-dismiss="modal" aria-label="Close" id="close-button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                
+                
+                            <form>
+                                <div class="form-group">
+                                        <label for="projectName">Are you sure?</label>
+                                </div>
+                                <button type="button" (click)="deleteProject()" id="delete-project-button" class="btn btn-primary">Delete</button>
+                            </form>
+                
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
