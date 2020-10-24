@@ -1,0 +1,64 @@
+$primary: rgb(111, 0, 225);
+
+#project-name-header-div {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 1em;
+    border-bottom: 1px solid lightgray;
+    background-color: lighten($primary, 50%);
+    height: 13%;
+}
+
+#project-description-div {
+    padding: 1em;
+    height: 22%;
+    overflow-y: auto;
+
+    #project-short-description-div {
+        float: left;
+        width: 50%;
+    }
+
+    #project-long-description-div {
+        float: right;
+        width: 50%;
+        font-size: 16px;
+    }
+
+    strong {
+        font-size: 18px;
+    }
+}
+
+#project-component-list-div {
+    float: left;
+    border-top: 1px solid lightgray;
+    width: 100%;
+    padding: 1em;
+    height: 65%;
+    overflow-y: auto;
+}
+
+#project-buttons-div {
+    float: right;
+
+    button {
+        width: 100px;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        text-decoration: none;
+        background-color: $primary;
+        font-weight: 500;
+        color: #FFFFFF;
+        text-align: center;
+        transition: all 0.2s;
+        cursor: pointer;
+        font-size: 16px;
+
+        &:hover {
+            background-color: white;
+            color: $primary;
+            border: 0.1em solid $primary;
+        }
+    }
+}

@@ -1,3 +1,29 @@
 <ng-container *ngIf="project">
-    {{project.name}}
+    <div id="project-name-header-div">
+        {{ project.name }}
+        <div id="project-buttons-div">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary">Edit</button>
+                <button type="button" class="btn btn-primary">Delete</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="project-description-div">
+        <div id="project-short-description-div">
+            <p><strong>Short Description:</strong></p>
+            <p>{{ project.shortDescription }}</p>
+        </div>
+        <div id="project-long-description-div">
+            <p><strong>Long Description:</strong></p>
+            <p>{{ project.longDescription }}</p>
+        </div>
+    </div>
+
+    <div id="project-component-list-div">
+        <strong>Components</strong>
+        <ng-container *ngFor="let component of project.components">
+            {{ component.name }}
+        </ng-container>
+    </div>
 </ng-container>
