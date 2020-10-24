@@ -10,6 +10,7 @@ import { AddProjectService } from './add-project/add-project.service';
 import { ProjectListElementComponent } from './project-list-element/project-list-element.component';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { EditProjectComponent } from './edit-project/edit-project.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
     ProjectListComponent,
     ProjectListElementComponent,
     AddProjectComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    EditProjectComponent
   ],
   imports: [
   HttpClientModule,
