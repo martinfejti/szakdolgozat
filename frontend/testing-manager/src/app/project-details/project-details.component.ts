@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Project } from './../../models/project';
 import { ProjectService } from './../../services/project.service';
 
@@ -10,12 +10,24 @@ import { ProjectService } from './../../services/project.service';
 export class ProjectDetailsComponent implements OnInit {
 
   @Input() project: Project;
+  @ViewChild('closeBtn', {static: false}) closeBtn: ElementRef;
 
   constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
     this.projectService.selectedProjectObservable.subscribe(result => {
       this.project = result;
+    });
+  }
+
+  deleteProject() {
+    this.projectService.deleteProject(this.project.id).subscribe(result => {
+      console.log(result);
+      this.projectService.notifyProjectDeletion();
+      this.closeBtn.nativeElement.click();
+      this.project = null;
+    }, error => {
+      console.log(error);
     });
   }
 

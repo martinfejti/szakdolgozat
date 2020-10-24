@@ -10,6 +10,7 @@ export class ProjectService {
 
   addedProjectObservable = new Subject();
   editedProjectObservable = new Subject();
+  deletedProjectObservable = new Subject();
   selectedProjectObservable = new Subject();
 
   constructor(private httpClient: HttpClient) { }
@@ -18,12 +19,21 @@ export class ProjectService {
     return this.httpClient.get<Project[]>('http://localhost:8080/project/getAllProjects', {});
   }
 
+  deleteProject(id: number) {
+    console.log(id);
+    return this.httpClient.delete(`http://localhost:8080/project/${id}`, {});
+  }
+
   notifyProjectCreation() {
     this.addedProjectObservable.next();
   }
 
   notifyProjectEdition() {
     this.editedProjectObservable.next();
+  }
+
+  notifyProjectDeletion() {
+    this.deletedProjectObservable.next();
   }
 
   notifySelectedProject(project: Project) {

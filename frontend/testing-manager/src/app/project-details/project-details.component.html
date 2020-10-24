@@ -27,6 +27,9 @@
         </ng-container>
     </div>
 </ng-container>
+<ng-container *ngIf="!project">
+    Please select another existing project!
+</ng-container>
 <app-edit-project [project]="project"></app-edit-project>
 <div>
         <div class="modal fade" id="deleteProjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
