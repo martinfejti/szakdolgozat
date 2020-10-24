@@ -39,7 +39,11 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public ProjectDto updateProject(ProjectDto projectDto) throws Exception {
-        ProjectEntity projectEntity = PROJECT_MAPPER.mapProjectDtoToEntity(projectDto);
+        // ProjectEntity projectEntity = PROJECT_MAPPER.mapProjectDtoToEntity(projectDto);
+        ProjectEntity projectEntity = this.projectRepository.getProjectById(projectDto.getId());
+        projectEntity.setName(projectDto.getName());
+        projectEntity.setShortDescription(projectDto.getShortDescription());
+        projectEntity.setLongDescription(projectDto.getLongDescription());
         
         this.generalRepository.updateEntity(projectEntity);
         

@@ -22,6 +22,10 @@ export class AppComponent {
     this.projectService.addedProjectObservable.subscribe(() => {
       this.getAllProjects();
     });
+
+    this.projectService.editedProjectObservable.subscribe(() => {
+      this.getAllProjects();
+    });
   }
 
   changeSelectedView(type: 'PROJECT_DETAILS' | 'COMPONENT_DETAILS' | 'CASE_DETAILS' | 'RUN_TEST' | 'USERS_GUIDE' | undefined) {

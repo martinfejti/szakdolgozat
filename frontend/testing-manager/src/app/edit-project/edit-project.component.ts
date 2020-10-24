@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Input, ViewChild, ElementRef } from '@angular/core';
 import { Project } from './../../models/project';
+import { EditProjectService } from './edit-project.service';
+import { ProjectService } from './../../services/project.service';
 
 @Component({
   selector: 'app-edit-project',
@@ -8,17 +10,31 @@ import { Project } from './../../models/project';
 })
 export class EditProjectComponent implements OnInit {
 
-  project: Project = {
+  /*project: Project = {
     name: null,
     shortDescription: null,
     id: null,
     longDescription: null,
     components: null
-  };
+  };*/
 
-  constructor() { }
+  @Input() project: Project;
+  @ViewChild('closeBtn', {static: false}) closeBtn: ElementRef;
+
+  constructor(@Inject(EditProjectService) private editProjectService: EditProjectService, private projectService: ProjectService) { }
 
   ngOnInit() {
+    console.log(this.project);
+  }
+
+  editProject() {
+    this.editProjectService.editProject(this.project).subscribe(result => {
+      console.log(result);
+      this.closeBtn.nativeElement.click();
+      this.projectService.notifyProjectEdition();
+    }, error => {
+      console.log(error);
+    });
   }
 
 }

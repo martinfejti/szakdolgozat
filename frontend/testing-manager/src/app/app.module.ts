@@ -11,6 +11,7 @@ import { ProjectListElementComponent } from './project-list-element/project-list
 import { AddProjectComponent } from './add-project/add-project.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
+import { EditProjectService } from './edit-project/edit-project.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EditProjectComponent } from './edit-project/edit-project.component';
   ],
   providers: [
     ProjectService,
-    AddProjectService
+    AddProjectService,
+    EditProjectService
   ],
   bootstrap: [AppComponent]
 })
