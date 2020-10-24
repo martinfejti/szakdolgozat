@@ -17,6 +17,7 @@ export class ProjectDetailsComponent implements OnInit {
   ngOnInit() {
     this.projectService.selectedProjectObservable.subscribe(result => {
       this.project = result;
+      console.log(this.project);
     });
   }
 

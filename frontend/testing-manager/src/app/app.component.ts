@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ProjectService } from './../services/project.service';
 import { Project } from './../models/project';
+import { ComponentService } from './../services/component.service';
+import { Component as ComponentModel } from './../models/component';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +13,11 @@ export class AppComponent {
   title = 'testing-manager';
   selectedView: string;
   projects: Project[];
+  selectedComponent: ComponentModel;
+  selectedProject: Project;
 
-  constructor(private projectService: ProjectService) {
-    this.selectedView = 'PROJECT_DETAILS';
+  constructor(private projectService: ProjectService, private componentService: ComponentService) {
+    this.selectedView = 'USERS_GUIDE';
   }
 
   ngOnInit() {
@@ -29,6 +33,20 @@ export class AppComponent {
 
     this.projectService.deletedProjectObservable.subscribe(() => {
       this.getAllProjects();
+    });
+
+    this.projectService.selectedProjectObservable.subscribe(() => {
+      this.selectedView = 'PROJECT_DETAILS';
+      console.log('set to project details');
+    });
+
+    this.componentService.selectedComponentObservable.subscribe((result) => {
+      console.log('main subscribe');
+      console.log(result);
+      this.selectedComponent = result;
+      console.log('SELECTED Component', this.selectedComponent);
+      this.selectedView = 'COMPONENT_DETAILS';
+      console.log('set to component details ends');
     });
   }
 

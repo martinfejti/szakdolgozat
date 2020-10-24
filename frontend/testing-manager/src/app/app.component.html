@@ -31,7 +31,7 @@
             User's Guide Page
           </ng-container>
           <ng-container *ngIf="selectedView == 'COMPONENT_DETAILS'">
-            COMPONENT_DETAILS Page
+            <app-component-details [component]="selectedComponent"></app-component-details>
           </ng-container>
           <ng-container *ngIf="selectedView == 'CASE_DETAILS'">
             CASE_DETAILS Page

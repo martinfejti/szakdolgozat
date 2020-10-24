@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Component as ComponentModel} from './../../models/component';
+import { ComponentService } from './../../services/component.service';
+
 
 @Component({
   selector: 'app-component-details',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComponentDetailsComponent implements OnInit {
 
-  constructor() { }
+  @Input() component: ComponentModel;
+
+  constructor(private componentService: ComponentService) { }
 
   ngOnInit() {
+    /*
+    console.log('COMP DET BEFORE SUB');
+    this.componentService.selectedComponentObservable.subscribe(result => {
+      console.log('triggered comp subs');
+      this.component = result;
+      console.log(this.component);
+    });
+    */
   }
 
 }
