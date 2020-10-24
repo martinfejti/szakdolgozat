@@ -28,7 +28,9 @@
     </div>
 </ng-container>
 <ng-container *ngIf="!project">
-    Please select another existing project!
+    <div id="no-project-div">
+        Please select an existing project!
+    </div>
 </ng-container>
 <app-edit-project [project]="project"></app-edit-project>
 <div>
