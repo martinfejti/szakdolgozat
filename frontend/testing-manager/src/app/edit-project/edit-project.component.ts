@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Project } from './../../models/project';
 
 @Component({
   selector: 'app-edit-project',
@@ -6,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-project.component.scss']
 })
 export class EditProjectComponent implements OnInit {
+
+  project: Project = {
+    name: null,
+    shortDescription: null,
+    id: null,
+    longDescription: null,
+    components: null
+  };
 
   constructor() { }
 

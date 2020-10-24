@@ -3,7 +3,7 @@
         {{ project.name }}
         <div id="project-buttons-div">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary">Edit</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProjectModal">Edit</button>
                 <button type="button" class="btn btn-primary">Delete</button>
             </div>
         </div>
@@ -27,3 +27,4 @@
         </ng-container>
     </div>
 </ng-container>
+<app-edit-project></app-edit-project>
