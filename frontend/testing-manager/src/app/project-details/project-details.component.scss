@@ -37,6 +37,27 @@ $primary: rgb(111, 0, 225);
     padding: 1em;
     height: 65%;
     overflow-y: auto;
+
+    button {
+        float: right;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        text-decoration: none;
+        background-color: $primary;
+        font-weight: 500;
+        color: #FFFFFF;
+        text-align: center;
+        transition: all 0.2s;
+        margin-left: 25%;
+        cursor: pointer;
+        font-size: 16px;
+
+        &:hover {
+            background-color: white;
+            color: $primary;
+            border: 0.1em solid $primary;
+        }
+    }
 }
 
 #project-buttons-div {

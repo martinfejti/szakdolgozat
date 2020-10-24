@@ -21,9 +21,15 @@
     </div>
 
     <div id="project-component-list-div">
-        <strong>Components</strong>
-        <ng-container *ngFor="let component of project.components">
-            {{ component.name }}
+        <button type="button" class="btn btn-primary">Add New Component</button>
+        <p><strong>Components</strong></p>
+        <ng-container *ngIf="project.components.length > 0">
+            <ng-container *ngFor="let component of project.components">
+                <app-component-list-element [component]="component"></app-component-list-element>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngIf="project.components.length == 0">
+                <p><strong>This project does not have components yet</strong></p>
         </ng-container>
     </div>
 </ng-container>

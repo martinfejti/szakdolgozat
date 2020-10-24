@@ -12,6 +12,7 @@ import { AddProjectComponent } from './add-project/add-project.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { EditProjectService } from './edit-project/edit-project.service';
+import { ComponentListElementComponent } from './component-list-element/component-list-element.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EditProjectService } from './edit-project/edit-project.service';
     ProjectListElementComponent,
     AddProjectComponent,
     ProjectDetailsComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    ComponentListElementComponent
   ],
   imports: [
   HttpClientModule,
