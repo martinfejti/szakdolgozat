@@ -15,14 +15,6 @@ export class ComponentDetailsComponent implements OnInit {
   constructor(private componentService: ComponentService) { }
 
   ngOnInit() {
-    /*
-    console.log('COMP DET BEFORE SUB');
-    this.componentService.selectedComponentObservable.subscribe(result => {
-      console.log('triggered comp subs');
-      this.component = result;
-      console.log(this.component);
-    });
-    */
   }
 
 }

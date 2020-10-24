@@ -25,7 +25,7 @@
     <div id="details-page-div">
       <div class="details-inner-div">
           <ng-container *ngIf="selectedView == 'PROJECT_DETAILS'">
-            <app-project-details></app-project-details>
+            <app-project-details [project]="selectedProject"></app-project-details>
           </ng-container>
           <ng-container *ngIf="selectedView == 'USERS_GUIDE'">
             User's Guide Page

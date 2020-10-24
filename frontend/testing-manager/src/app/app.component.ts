@@ -35,18 +35,14 @@ export class AppComponent {
       this.getAllProjects();
     });
 
-    this.projectService.selectedProjectObservable.subscribe(() => {
+    this.projectService.selectedProjectObservable.subscribe((result) => {
+      this.selectedProject = result;
       this.selectedView = 'PROJECT_DETAILS';
-      console.log('set to project details');
     });
 
     this.componentService.selectedComponentObservable.subscribe((result) => {
-      console.log('main subscribe');
-      console.log(result);
       this.selectedComponent = result;
-      console.log('SELECTED Component', this.selectedComponent);
       this.selectedView = 'COMPONENT_DETAILS';
-      console.log('set to component details ends');
     });
   }
 

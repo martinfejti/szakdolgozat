@@ -15,10 +15,6 @@ export class ProjectDetailsComponent implements OnInit {
   constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
-    this.projectService.selectedProjectObservable.subscribe(result => {
-      this.project = result;
-      console.log(this.project);
-    });
   }
 
   deleteProject() {
