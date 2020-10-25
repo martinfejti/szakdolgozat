@@ -23,6 +23,11 @@ export class ComponentService {
     });
   }
 
+  deleteComponent(id: number) {
+    console.log(id);
+    return this.httpClient.delete(`http://localhost:8080/component/${id}`, {});
+  }
+
   notifySelectedComponent(component: ComponentModel) {
     console.log('comp service notify');
     console.log(component);

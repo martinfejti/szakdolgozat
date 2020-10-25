@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Component as ComponentModel} from './../../models/component';
 import { ComponentService } from './../../services/component.service';
-
+import { ProjectService } from './../../services/project.service';
 
 @Component({
   selector: 'app-component-details',
@@ -11,10 +11,20 @@ import { ComponentService } from './../../services/component.service';
 export class ComponentDetailsComponent implements OnInit {
 
   @Input() component: ComponentModel;
+  @ViewChild('closeBtn', {static: false}) closeBtn: ElementRef;
 
-  constructor(private componentService: ComponentService) { }
+  constructor(private componentService: ComponentService, private projectService: ProjectService) { }
 
   ngOnInit() {
+  }
+
+  deleteComponent() {
+    this.componentService.deleteComponent(this.component.id).subscribe((result) => {
+      console.log(result);
+      this.projectService.notifyProjectDeletion();
+      this.component = null;
+      this.closeBtn.nativeElement.click();
+    });
   }
 
 }

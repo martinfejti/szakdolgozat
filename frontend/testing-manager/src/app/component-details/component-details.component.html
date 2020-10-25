@@ -4,7 +4,7 @@
         <div id="component-buttons-div">
             <div class="btn-group">
                 <button type="button" class="btn btn-primary">Edit</button>
-                <button type="button" class="btn btn-primary">Delete</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteComponentModal">Delete</button>
             </div>
         </div>
     </div>
@@ -36,3 +36,34 @@
         </ng-container>
     </div>
 </ng-container>
+<ng-container *ngIf="!component">
+    <div id="no-project-div">
+        Please select an existing project!
+    </div>
+</ng-container>
+<div>
+    <div class="modal fade" id="deleteComponentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" id="modal-header-div">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Component</h5>
+                        <button type="button" #closeBtn class="close" data-dismiss="modal" aria-label="Close" id="close-button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+            
+            
+                        <form>
+                            <div class="form-group">
+                                    <label for="componentName">Are you sure?</label>
+                            </div>
+                            <button type="button" (click)="deleteComponent()" id="delete-component-button" class="btn btn-primary">Delete</button>
+                        </form>
+            
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
