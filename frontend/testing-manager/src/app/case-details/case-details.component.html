@@ -1,4 +1,32 @@
 <ng-container *ngIf="testCase">
-    {{ testCase.name }}
+    <div id="case-name-header-div">
+        {{ testCase.name }}
+        <div id="case-buttons-div">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCaseModal">Edit</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCaseModal">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="case-description-div">
+        <div id="case-inner-description-div">
+            <p><strong>Description:</strong></p>
+            <p>{{ testCase.description }}</p>
+        </div>
+    </div>
+
+    <div id="case-step-list-div">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewCaseModal">Add New Component</button>
+        <p><strong>Steps</strong></p>
+        <ng-container *ngIf="testCase.steps.length > 0">
+            <ng-container *ngFor="let step of testCase.steps">
+                <p>What are you doin step component?</p>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngIf="testCase.steps.length == 0">
+                <p><strong>This case does not have steps yet</strong></p>
+        </ng-container>
+    </div>
 </ng-container>
 
