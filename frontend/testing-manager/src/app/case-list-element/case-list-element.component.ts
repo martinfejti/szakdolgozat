@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Case } from './../../models/case';
+import { CaseService } from './../../services/case.service';
 
 @Component({
   selector: 'app-case-list-element',
@@ -8,11 +9,14 @@ import { Case } from './../../models/case';
 })
 export class CaseListElementComponent implements OnInit {
 
-  @Input() case: Case;
+  @Input() testCase: Case;
 
-  constructor() { }
+  constructor(private caseService: CaseService) { }
 
   ngOnInit() {
   }
 
+  onSelectedCase() {
+    this.caseService.notifySelectedCase(this.testCase);
+  }
 }

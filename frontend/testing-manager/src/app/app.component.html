@@ -34,7 +34,7 @@
             <app-component-details [component]="selectedComponent"></app-component-details>
           </ng-container>
           <ng-container *ngIf="selectedView == 'CASE_DETAILS'">
-            CASE_DETAILS Page
+            <app-case-details [testCase]="selectedCase"></app-case-details>
           </ng-container>
           <ng-container *ngIf="selectedView == 'RUN_TEST'">
             RUN_TEST Page

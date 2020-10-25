@@ -3,6 +3,8 @@ import { ProjectService } from './../services/project.service';
 import { Project } from './../models/project';
 import { ComponentService } from './../services/component.service';
 import { Component as ComponentModel } from './../models/component';
+import { CaseService } from './../services/case.service';
+import { Case } from './../models/case';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +17,9 @@ export class AppComponent {
   projects: Project[];
   selectedComponent: ComponentModel;
   selectedProject: Project;
+  selectedCase: Case;
 
-  constructor(private projectService: ProjectService, private componentService: ComponentService) {
+  constructor(private projectService: ProjectService, private componentService: ComponentService, private caseService: CaseService) {
     this.selectedView = 'USERS_GUIDE';
   }
 
@@ -45,6 +48,12 @@ export class AppComponent {
       console.log('NEW COMPO APP COMP', result);
       this.selectedComponent = result;
       this.selectedView = 'COMPONENT_DETAILS';
+    });
+
+    this.caseService.selectedCaseObservable.subscribe(result => {
+      console.log('new case', result);
+      this.selectedCase = result;
+      this.selectedView = 'CASE_DETAILS';
     });
   }
 
