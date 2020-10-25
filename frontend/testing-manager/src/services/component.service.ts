@@ -23,6 +23,18 @@ export class ComponentService {
     });
   }
 
+  editComponent(component: ComponentModel) {
+    console.log(component);
+    return this.httpClient.put('http://localhost:8080/component', {
+      id: component.id,
+      projectId: component.projectId,
+      name: component.name,
+      description: component.description,
+      author: component.author,
+      version: component.version
+    });
+  }
+
   deleteComponent(id: number) {
     console.log(id);
     return this.httpClient.delete(`http://localhost:8080/component/${id}`, {});
