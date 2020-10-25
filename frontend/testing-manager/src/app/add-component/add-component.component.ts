@@ -36,8 +36,7 @@ export class AddComponentComponent implements OnInit {
         console.log(result);
         this.closeBtn.nativeElement.click();
         this.projectService.notifyProjectCreation();
-        this.projectService.notifySelectedProject(this.parentProject);
-        alert('New component created! Please refresh the page in order to get the most present data!');
+        this.componentService.notifySelectedComponent(result);
       }, error => {
         console.log(error);
       });
