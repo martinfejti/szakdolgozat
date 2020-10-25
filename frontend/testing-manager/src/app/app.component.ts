@@ -42,6 +42,7 @@ export class AppComponent {
     });
 
     this.componentService.selectedComponentObservable.subscribe((result) => {
+      console.log('NEW COMPO APP COMP', result);
       this.selectedComponent = result;
       this.selectedView = 'COMPONENT_DETAILS';
     });

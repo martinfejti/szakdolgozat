@@ -13,6 +13,7 @@ export class AddComponentComponent implements OnInit {
 
   @Input() parentProject: Project;
   @ViewChild('closeBtn', {static: false}) closeBtn: ElementRef;
+  createdComponent: ComponentModel;
   component: ComponentModel = {
     id: null,
     projectId: null,
@@ -20,8 +21,8 @@ export class AddComponentComponent implements OnInit {
     description: null,
     author: null,
     version: null,
-    testCases: null,
-    componentInstances: null
+    testCases: [],
+    componentInstances: []
   };
 
   constructor(private componentService: ComponentService, private projectService: ProjectService) { }
@@ -34,15 +35,22 @@ export class AddComponentComponent implements OnInit {
       this.component.projectId = this.parentProject.id;
       this.componentService.createComponent(this.component).subscribe(result => {
         console.log(result);
+        this.setFieldsToNewComponent(result);
         this.closeBtn.nativeElement.click();
         this.projectService.notifyProjectCreation();
-        this.componentService.notifySelectedComponent(result);
+        this.componentService.notifySelectedComponent(this.createdComponent);
       }, error => {
         console.log(error);
       });
     } else {
       alert('All fields are required to fill!');
     }
+  }
+
+  setFieldsToNewComponent(result: any) {
+    this.createdComponent = result;
+    this.createdComponent.testCases = [];
+    this.createdComponent.componentInstances = [];
   }
 
 }
