@@ -20,7 +20,7 @@ export class AddComponentComponent implements OnInit {
     description: null,
     author: null,
     version: null,
-    cases: null,
+    testCases: null,
     componentInstances: null
   };
 

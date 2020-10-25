@@ -1,4 +1,38 @@
-<p>Component detaiés</p>
 <ng-container *ngIf="component">
-    {{ component.name }}
+    <div id="component-name-header-div">
+        {{ component.name }}
+        <div id="component-buttons-div">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary">Edit</button>
+                <button type="button" class="btn btn-primary">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="component-description-container-div">
+        <div id="component-description-div">
+            <p><strong>Description:</strong></p>
+            <p>{{ component.description }}</p>
+        </div>
+        <div id="component-author-div">
+            <p><strong>Author:</strong></p>
+            <p>{{ component.author }}</p>
+        </div>
+        <div id="component-version-div">
+            <p><strong>Version:</strong></p>
+            <p>{{ component.version }}</p>
+        </div>
+    </div>
+    <div id="component-case-list-div">
+        <button type="button" class="btn btn-primary">Add New Case</button>
+        <p><strong>Cases</strong></p>
+        <ng-container *ngIf="component.testCases.length > 0">
+            <ng-container *ngFor="let case of component.testCases">
+                <p>henlo cases</p>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngIf="component.testCases.length == 0">
+                <p><strong>This component does not have cases yet</strong></p>
+        </ng-container>
+    </div>
 </ng-container>

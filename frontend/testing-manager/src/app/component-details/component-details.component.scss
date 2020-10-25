@@ -1,0 +1,91 @@
+$primary: rgb(111, 0, 225);
+
+#component-name-header-div {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 1em;
+    border-bottom: 1px solid lightgray;
+    background-color: lighten($primary, 50%);
+    height: 13%;
+}
+
+#component-buttons-div {
+    float: right;
+
+    button {
+        width: 100px;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        text-decoration: none;
+        background-color: $primary;
+        font-weight: 500;
+        color: #FFFFFF;
+        text-align: center;
+        transition: all 0.2s;
+        cursor: pointer;
+        font-size: 16px;
+
+        &:hover {
+            background-color: white;
+            color: $primary;
+            border: 0.1em solid $primary;
+        }
+    }
+}
+
+#component-description-container-div {
+    padding: 1em;
+    height: 22%;
+    overflow-y: auto;
+
+    #component-description-div {
+        float: left;
+        width: 50%;
+    }
+
+    #component-author-div {
+        float: right;
+        width: 25%;
+        font-size: 16px;
+    }
+
+    #component-version-div {
+        float: right;
+        width: 25%;
+        font-size: 16px;
+    }
+
+    strong {
+        font-size: 18px;
+    }
+}
+
+#component-case-list-div {
+    float: left;
+    border-top: 1px solid lightgray;
+    width: 100%;
+    padding: 1em;
+    height: 65%;
+    overflow-y: auto;
+
+    button {
+        float: right;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        text-decoration: none;
+        background-color: $primary;
+        font-weight: 500;
+        color: #FFFFFF;
+        text-align: center;
+        transition: all 0.2s;
+        margin-left: 25%;
+        cursor: pointer;
+        font-size: 16px;
+
+        &:hover {
+            background-color: white;
+            color: $primary;
+            border: 0.1em solid $primary;
+        }
+    }
+}

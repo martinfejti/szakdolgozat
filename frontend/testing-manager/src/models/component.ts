@@ -8,6 +8,6 @@ export interface Component {
     description?: string;
     author?: string;
     version?: string;
-    cases?: Case[];
+    testCases?: Case[];
     componentInstances?: ComponentInstance[];
 }
