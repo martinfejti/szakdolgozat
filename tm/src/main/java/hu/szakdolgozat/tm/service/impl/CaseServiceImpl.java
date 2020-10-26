@@ -45,9 +45,11 @@ public class CaseServiceImpl implements CaseService {
         
         this.generalRepository.createEntity(caseEntity);
         
-        for (int i = 0; i < caseEntity.getSteps().size(); i++) {
-            caseEntity.getSteps().get(i).setTestCase(caseEntity);
-            this.generalRepository.createEntity(caseEntity.getSteps().get(i));
+        if (caseEntity.getSteps() != null) {
+            for (int i = 0; i < caseEntity.getSteps().size(); i++) {
+                caseEntity.getSteps().get(i).setTestCase(caseEntity);
+                this.generalRepository.createEntity(caseEntity.getSteps().get(i));
+            }            
         }
         
         return CASE_MAPPER.mapCaseEntityToDto(caseEntity);

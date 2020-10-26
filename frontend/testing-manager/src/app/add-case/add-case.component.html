@@ -20,11 +20,6 @@
                             <label for="caseDescription">Description</label>
                             <input name="caseDescription" [(ngModel)]="testCase.description" type="text" class="form-control" id="inputName" aria-describedby="emailHelp" placeholder="Type in the description">
                         </div>
-                        <strong>Steps</strong>
-                        <button type="button" class="btn btn-primary" (click)="addNewStepRow()">Add step</button>
-                        <div class="form-group">
-                            <p>Step One</p>
-                        </div>
                         <button type="button" (click)="addCase()" id="create-case-button" class="btn btn-primary">Create</button>
                     </form>
         

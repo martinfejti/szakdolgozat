@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Component as ComponentModel } from './../../models/component';
 import { Case } from './../../models/case';
+import { CaseService } from './../../services/case.service';
+import { ProjectService } from './../../services/project.service';
 
 @Component({
   selector: 'app-add-case',
@@ -19,13 +21,19 @@ export class AddCaseComponent implements OnInit {
     steps: []
   };
 
-  constructor() { }
+  constructor(private caseService: CaseService, private projectService: ProjectService) { }
 
   ngOnInit() {
   }
 
   addCase() {
-    // call case service
+    this.testCase.componentId = this.parentComponent.id;
+    this.caseService.createCase(this.testCase).subscribe(result => {
+      console.log(result);
+      this.closeBtn.nativeElement.click();
+      this.projectService.notifyProjectCreation();
+      this.caseService.notifySelectedCase(this.testCase);
+    });
   }
 
 }

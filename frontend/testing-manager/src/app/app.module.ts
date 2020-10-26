@@ -20,6 +20,7 @@ import { CaseListElementComponent } from './case-list-element/case-list-element.
 import { CaseDetailsComponent } from './case-details/case-details.component';
 import { StepListElementComponent } from './step-list-element/step-list-element.component';
 import { AddCaseComponent } from './add-case/add-case.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AddCaseComponent } from './add-case/add-case.component';
   imports: [
   HttpClientModule,
   BrowserModule,
-  FormsModule
+  FormsModule,
+  BrowserAnimationsModule
   ],
   providers: [
     ProjectService,

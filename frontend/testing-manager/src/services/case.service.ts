@@ -12,6 +12,14 @@ export class CaseService {
 
   constructor(private httpClient: HttpClient) { }
 
+  createCase(testCase: Case) {
+    return this.httpClient.post('http://localhost:8080/case', {
+      name: testCase.name,
+      description: testCase.description,
+      componentId: testCase.componentId
+    });
+  }
+
   notifySelectedCase(testCase: Case) {
     console.log(testCase);
     this.selectedCaseObservable.next(testCase);
