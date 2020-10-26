@@ -24,7 +24,7 @@
         </div>
     </div>
     <div id="component-case-list-div">
-        <button type="button" class="btn btn-primary">Add New Case</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewCaseModal">Add New Case</button>
         <p><strong>Cases</strong></p>
         <ng-container *ngIf="component.testCases.length > 0">
             <ng-container *ngFor="let case of component.testCases">
@@ -41,6 +41,7 @@
         Please select an existing project!
     </div>
 </ng-container>
+<app-add-case [parentComponent]="component"></app-add-case>
 <app-edit-component [component]="component"></app-edit-component>
 <div>
     <div class="modal fade" id="deleteComponentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
