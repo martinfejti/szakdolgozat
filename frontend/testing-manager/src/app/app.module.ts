@@ -19,6 +19,7 @@ import { EditComponentComponent } from './edit-component/edit-component.componen
 import { CaseListElementComponent } from './case-list-element/case-list-element.component';
 import { CaseDetailsComponent } from './case-details/case-details.component';
 import { StepListElementComponent } from './step-list-element/step-list-element.component';
+import { AddCaseComponent } from './add-case/add-case.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { StepListElementComponent } from './step-list-element/step-list-element.
     EditComponentComponent,
     CaseListElementComponent,
     CaseDetailsComponent,
-    StepListElementComponent
+    StepListElementComponent,
+    AddCaseComponent
   ],
   imports: [
   HttpClientModule,
