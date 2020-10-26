@@ -1,1 +1,11 @@
-<p>step-details works!</p>
+<ng-container *ngIf="step">
+    <div id="step-name-header-div">
+            {{ step.description }}
+            <div id="step-buttons-div">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCaseModal">Edit</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCaseModal">Delete</button>
+                </div>
+            </div>
+        </div>
+</ng-container>

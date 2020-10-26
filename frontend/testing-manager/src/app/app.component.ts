@@ -5,6 +5,8 @@ import { ComponentService } from './../services/component.service';
 import { Component as ComponentModel } from './../models/component';
 import { CaseService } from './../services/case.service';
 import { Case } from './../models/case';
+import { StepService } from './../services/step.service';
+import { Step } from './../models/step';
 
 @Component({
   selector: 'app-root',
@@ -18,9 +20,14 @@ export class AppComponent {
   selectedComponent: ComponentModel;
   selectedProject: Project;
   selectedCase: Case;
+  selectedStep: Step;
 
-  constructor(private projectService: ProjectService, private componentService: ComponentService, private caseService: CaseService) {
-    this.selectedView = 'USERS_GUIDE';
+  constructor(
+    private projectService: ProjectService,
+    private componentService: ComponentService,
+    private caseService: CaseService,
+    private stepService: StepService) {
+      this.selectedView = 'USERS_GUIDE';
   }
 
   ngOnInit() {
@@ -55,9 +62,14 @@ export class AppComponent {
       this.selectedCase = result;
       this.selectedView = 'CASE_DETAILS';
     });
+    this.stepService.selectedStepObservable.subscribe(result => {
+      console.log('new step', result);
+      this.selectedStep = result;
+      this.selectedView = 'STEP_DETAILS';
+    });
   }
 
-  changeSelectedView(type: 'PROJECT_DETAILS' | 'COMPONENT_DETAILS' | 'CASE_DETAILS' | 'RUN_TEST' | 'USERS_GUIDE' | undefined) {
+  changeSelectedView(type: 'PROJECT_DETAILS' | 'COMPONENT_DETAILS' | 'CASE_DETAILS' | 'STEP_DETAILS' | 'RUN_TEST' | 'USERS_GUIDE' | undefined) {
     this.selectedView = type;
   }
 

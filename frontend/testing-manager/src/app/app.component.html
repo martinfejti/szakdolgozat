@@ -36,6 +36,9 @@
           <ng-container *ngIf="selectedView == 'CASE_DETAILS'">
             <app-case-details [testCase]="selectedCase"></app-case-details>
           </ng-container>
+          <ng-container *ngIf="selectedView == 'STEP_DETAILS'">
+            <app-step-details [step]="selectedStep"></app-step-details>
+          </ng-container>
           <ng-container *ngIf="selectedView == 'RUN_TEST'">
             RUN_TEST Page
           </ng-container>

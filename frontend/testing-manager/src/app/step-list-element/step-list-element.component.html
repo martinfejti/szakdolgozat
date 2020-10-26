@@ -1,4 +1,4 @@
-<div *ngIf="step" id="step-element">
+<div *ngIf="step" id="step-element" (click)="onSelectedStep()">
     <div id="step-element-description">
         {{ step.description }}
     </div>
