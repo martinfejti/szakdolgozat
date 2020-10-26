@@ -7,4 +7,5 @@ export interface Step {
     orderNumber?: number;
     comment?: string;
     stepInstances?: StepInstance[];
+    caseId?: number;
 }

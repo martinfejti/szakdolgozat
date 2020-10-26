@@ -17,7 +17,7 @@
     </div>
 
     <div id="case-step-list-div">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewCaseModal">Add New Step</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewStepModal">Add New Step</button>
         <p><strong>Steps</strong></p>
         <ng-container *ngIf="testCase.steps.length > 0">
             <ng-container *ngFor="let step of testCase.steps">
@@ -30,6 +30,7 @@
     </div>
 </ng-container>
 <app-edit-case [testCase]="testCase"></app-edit-case>
+<app-add-step [parentCase]="testCase"></app-add-step>
 <ng-container *ngIf="!testCase">
     <div id="no-project-div">
         Please select an existing project!

@@ -1,1 +1,35 @@
-<p>add-step works!</p>
+<ng-container *ngIf="parentCase">
+        <div class="modal fade" id="addNewStepModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" id="modal-header-div">
+                            <h5 class="modal-title" id="exampleModalLabel">Create New Step</h5>
+                            <button type="button" #closeBtn class="close" data-dismiss="modal" aria-label="Close" id="close-button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                
+                
+                            <form>
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <input name="description" [(ngModel)]="step.description" type="text" class="form-control" id="inputName" aria-describedby="emailHelp" placeholder="Type in the description">
+                                </div>
+                                <div class="form-group">
+                                    <label for="stepExpectedResult">Expected Result</label>
+                                    <input name="stepExpectedResult" [(ngModel)]="step.expectedResult" type="text" class="form-control" id="inputName" aria-describedby="emailHelp" placeholder="Type in the expected result">
+                                </div>
+                                <div class="form-group">
+                                    <label for="stepComment">Comment</label>
+                                    <input name="stepComment" [(ngModel)]="step.comment" type="text" class="form-control" id="inputName" aria-describedby="emailHelp" placeholder="Type in the comment">
+                                </div>
+                                <button type="button" (click)="addStep()" id="create-step-button" class="btn btn-primary">Create</button>
+                            </form>
+                
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </ng-container>

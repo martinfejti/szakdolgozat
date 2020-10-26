@@ -20,7 +20,6 @@ public class CreateCaseDto {
     @Min(1)
     private Long componentId;
     
-    @Size(min = 1)
     private List<CreateStepDto> steps;
     
     public CreateCaseDto() {
