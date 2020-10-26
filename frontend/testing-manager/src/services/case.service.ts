@@ -29,6 +29,10 @@ export class CaseService {
     });
   }
 
+  deleteCase(id: number) {
+    return this.httpClient.delete(`http://localhost:8080/case/${id}`, {});
+  }
+
   notifySelectedCase(testCase: Case) {
     console.log(testCase);
     this.selectedCaseObservable.next(testCase);

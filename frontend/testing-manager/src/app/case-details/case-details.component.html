@@ -30,4 +30,34 @@
     </div>
 </ng-container>
 <app-edit-case [testCase]="testCase"></app-edit-case>
-
+<ng-container *ngIf="!testCase">
+    <div id="no-project-div">
+        Please select an existing project!
+    </div>
+</ng-container>
+<div>
+    <div class="modal fade" id="deleteCaseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" id="modal-header-div">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Case</h5>
+                        <button type="button" #closeBtn class="close" data-dismiss="modal" aria-label="Close" id="close-button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+            
+            
+                        <form>
+                            <div class="form-group">
+                                    <label for="caseName">Are you sure?</label>
+                            </div>
+                            <button type="button" (click)="deleteCase()" id="delete-component-button" class="btn btn-primary">Delete</button>
+                        </form>
+            
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
