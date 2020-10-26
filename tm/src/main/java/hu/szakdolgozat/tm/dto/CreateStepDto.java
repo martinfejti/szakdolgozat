@@ -18,6 +18,10 @@ public class CreateStepDto {
     @Size(max = 100)
     private String expectedResult;
     
+    @NotNull
+    @Min(1)
+    private Long caseId;
+    
     @Size(max = 50)
     private String comment;
     
@@ -56,4 +60,11 @@ public class CreateStepDto {
         this.comment = comment;
     }
 
+    public Long getCaseId() {
+        return caseId;
+    }
+
+    public void setCaseId(Long caseId) {
+        this.caseId = caseId;
+    }
 }

@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import hu.szakdolgozat.tm.dto.CreateStepDto;
 import hu.szakdolgozat.tm.dto.StepDto;
 import hu.szakdolgozat.tm.dto.UpdateStepDto;
 import hu.szakdolgozat.tm.service.StepService;
@@ -28,6 +30,11 @@ public class StepController {
     private StepService stepService;
     
     public StepController() {
+    }
+    
+    @PostMapping
+    public StepDto createStep(@RequestBody @Valid CreateStepDto createDto) throws Exception {
+        return this.stepService.createStep(createDto);
     }
     
     @PutMapping

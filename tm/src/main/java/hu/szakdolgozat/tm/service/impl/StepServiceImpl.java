@@ -6,6 +6,7 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hu.szakdolgozat.tm.dto.CreateStepDto;
 import hu.szakdolgozat.tm.dto.StepDto;
 import hu.szakdolgozat.tm.dto.UpdateStepDto;
 import hu.szakdolgozat.tm.entity.StepEntity;
@@ -29,6 +30,15 @@ public class StepServiceImpl implements StepService {
     }
 
     @Override
+    public StepDto createStep(CreateStepDto createDto) throws Exception {
+        StepEntity stepEntity = STEP_MAPPER.mapCreateStepDtoToEntity(createDto);
+        
+        this.generalRepository.createEntity(stepEntity);
+        
+        return STEP_MAPPER.mapStepEntityToDto(stepEntity);
+    }
+    
+    @Override
     public StepDto updateStep(UpdateStepDto updateDto) throws Exception {
         StepEntity stepEntity = this.stepRepository.getStepEntityById(updateDto.getId());
         stepEntity.setDescription(updateDto.getDescription());
@@ -46,5 +56,4 @@ public class StepServiceImpl implements StepService {
         
         return STEP_MAPPER.mapStepEntityListToDtoList(stepEntityList);
     }
-
 }
