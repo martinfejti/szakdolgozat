@@ -20,6 +20,15 @@ export class CaseService {
     });
   }
 
+  editCase(testCase: Case) {
+    return this.httpClient.put('http://localhost:8080/case', {
+      id: testCase.id,
+      name: testCase.name,
+      description: testCase.description,
+      componentId: testCase.componentId
+    });
+  }
+
   notifySelectedCase(testCase: Case) {
     console.log(testCase);
     this.selectedCaseObservable.next(testCase);

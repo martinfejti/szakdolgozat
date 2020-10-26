@@ -64,24 +64,27 @@ public class CaseServiceImpl implements CaseService {
         
         this.generalRepository.updateEntity(caseEntity);
         
-        if (caseEntity.getSteps().size() == updateDto.getSteps().size()) { // if old and updated case has the same number of steps then its just simple update
-            for (int i = 0; i < caseEntity.getSteps().size(); i++) {
-                StepEntity stepEntity = this.stepRepository.getStepEntityById(caseEntity.getSteps().get(i).getId());
-                setUpdatedFieldsToStep(stepEntity, updateDto.getSteps().get(i), caseEntity);
-                
-                this.generalRepository.updateEntity(stepEntity);
+        /*
+        if ((caseEntity.getSteps() != null) || !caseEntity.getSteps().isEmpty()) {            
+            if (caseEntity.getSteps().size() == updateDto.getSteps().size()) { // if old and updated case has the same number of steps then its just simple update
+                for (int i = 0; i < caseEntity.getSteps().size(); i++) {
+                    StepEntity stepEntity = this.stepRepository.getStepEntityById(caseEntity.getSteps().get(i).getId());
+                    setUpdatedFieldsToStep(stepEntity, updateDto.getSteps().get(i), caseEntity);
+                    
+                    this.generalRepository.updateEntity(stepEntity);
+                }
+            } else { // if the numbers are different then delete old steps and create new ones from dto
+                for (int i = 0; i < caseEntity.getSteps().size(); i++) {
+                    this.generalRepository.deleteEntity(caseEntity.getSteps().get(i));
+                }
+                for (int i = 0; i < updateDto.getSteps().size(); i++) {
+                    StepEntity stepEntity = new StepEntity();
+                    setUpdatedFieldsToStep(stepEntity, updateDto.getSteps().get(i), caseEntity);
+                    
+                    this.generalRepository.createEntity(stepEntity);
+                }
             }
-        } else { // if the numbers are different then delete old steps and create new ones from dto
-            for (int i = 0; i < caseEntity.getSteps().size(); i++) {
-                this.generalRepository.deleteEntity(caseEntity.getSteps().get(i));
-            }
-            for (int i = 0; i < updateDto.getSteps().size(); i++) {
-                StepEntity stepEntity = new StepEntity();
-                setUpdatedFieldsToStep(stepEntity, updateDto.getSteps().get(i), caseEntity);
-                
-                this.generalRepository.createEntity(stepEntity);
-            }
-        }
+        }*/
         
         // return the steps that were present before the delele-create process (anyway it works)
         return CASE_MAPPER.mapCaseEntityToDto(caseEntity);
