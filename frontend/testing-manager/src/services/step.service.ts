@@ -23,6 +23,10 @@ export class StepService {
     });
   }
 
+  deleteStep(id: number) {
+    return this.httpClient.delete(`http://localhost:8080/step/${id}`, {});
+  }
+
   notifySelectedStep(step: Step) {
     this.selectedStepObservable.next(step);
   }

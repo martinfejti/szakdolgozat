@@ -12,5 +12,7 @@ public interface StepService {
     
     public StepDto updateStep(UpdateStepDto updateDto) throws Exception;
     
+    public void deleteStep(Long id) throws Exception;
+    
     public List<StepDto> getAllStepsByCaseId(Long id) throws Exception;
 }

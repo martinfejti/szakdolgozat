@@ -51,9 +51,17 @@ public class StepServiceImpl implements StepService {
     }
 
     @Override
+    public void deleteStep(Long id) throws Exception {
+        StepEntity stepEntity = this.stepRepository.getStepEntityById(id);
+        
+        this.generalRepository.deleteEntity(stepEntity);
+    }
+    
+    @Override
     public List<StepDto> getAllStepsByCaseId(Long id) throws Exception {
         List<StepEntity> stepEntityList = this.stepRepository.getStepEntityListByCaseId(id);
         
         return STEP_MAPPER.mapStepEntityListToDtoList(stepEntityList);
     }
+
 }

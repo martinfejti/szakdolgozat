@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +41,11 @@ public class StepController {
     @PutMapping
     public StepDto updateStep(@RequestBody @Valid UpdateStepDto updateDto) throws Exception {
         return this.stepService.updateStep(updateDto);
+    }
+    
+    @DeleteMapping("/{id}")
+    public void deleteStep(@PathVariable @Min(1) @NotNull Long id) throws Exception {
+        this.stepService.deleteStep(id);
     }
     
     @GetMapping("/{id}")
