@@ -22,6 +22,7 @@ import { StepListElementComponent } from './step-list-element/step-list-element.
 import { AddCaseComponent } from './add-case/add-case.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditCaseComponent } from './edit-case/edit-case.component';
+import { StepDetailsComponent } from './step-details/step-details.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EditCaseComponent } from './edit-case/edit-case.component';
     CaseDetailsComponent,
     StepListElementComponent,
     AddCaseComponent,
-    EditCaseComponent
+    EditCaseComponent,
+    StepDetailsComponent
   ],
   imports: [
   HttpClientModule,
