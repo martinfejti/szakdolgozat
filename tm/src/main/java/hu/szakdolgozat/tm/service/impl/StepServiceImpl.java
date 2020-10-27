@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import hu.szakdolgozat.tm.dto.CreateStepDto;
 import hu.szakdolgozat.tm.dto.StepDto;
 import hu.szakdolgozat.tm.dto.UpdateStepDto;
+import hu.szakdolgozat.tm.entity.CaseEntity;
 import hu.szakdolgozat.tm.entity.StepEntity;
 import hu.szakdolgozat.tm.mapper.StepMapper;
+import hu.szakdolgozat.tm.repository.CaseRepository;
 import hu.szakdolgozat.tm.repository.GeneralRepository;
 import hu.szakdolgozat.tm.repository.StepRepository;
 import hu.szakdolgozat.tm.service.StepService;
@@ -25,6 +27,9 @@ public class StepServiceImpl implements StepService {
     
     @Autowired
     private StepRepository stepRepository;
+    
+    @Autowired
+    private CaseRepository caseRepository;
     
     public StepServiceImpl() {
     }
@@ -52,9 +57,21 @@ public class StepServiceImpl implements StepService {
 
     @Override
     public void deleteStep(Long id) throws Exception {
-        StepEntity stepEntity = this.stepRepository.getStepEntityById(id);
+        StepEntity stepEntityToDelete = this.stepRepository.getStepEntityById(id);
+        CaseEntity parentCaseEntityBeforeStepDelete = this.caseRepository.getCaseEntityById(stepEntityToDelete.getTestCase().getId());
         
-        this.generalRepository.deleteEntity(stepEntity);
+        this.generalRepository.deleteEntity(stepEntityToDelete);
+        this.generalRepository.updateEntity(parentCaseEntityBeforeStepDelete);
+        
+        CaseEntity parentCaseEntityAfterStepDelete = this.caseRepository.getCaseEntityById(parentCaseEntityBeforeStepDelete.getId());
+        
+        for (int i = 0; i < parentCaseEntityAfterStepDelete.getSteps().size(); i++) {
+            StepEntity stepEntity = this.stepRepository.getStepEntityById(parentCaseEntityAfterStepDelete.getSteps().get(i).getId());
+            stepEntity.setOrderNumber(i + 1);
+            this.generalRepository.updateEntity(stepEntity);
+        }
+        
+        this.generalRepository.updateEntity(parentCaseEntityAfterStepDelete);
     }
     
     @Override
