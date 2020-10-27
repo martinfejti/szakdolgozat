@@ -25,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditCaseComponent } from './edit-case/edit-case.component';
 import { StepDetailsComponent } from './step-details/step-details.component';
 import { AddStepComponent } from './add-step/add-step.component';
+import { EditStepComponent } from './edit-step/edit-step.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { AddStepComponent } from './add-step/add-step.component';
     AddCaseComponent,
     EditCaseComponent,
     StepDetailsComponent,
-    AddStepComponent
+    AddStepComponent,
+    EditStepComponent
   ],
   imports: [
   HttpClientModule,
