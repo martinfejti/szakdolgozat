@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppComponent } from './app.component';
 import { ProjectListComponent } from './project-list/project-list.component';
@@ -49,7 +50,8 @@ import { AddStepComponent } from './add-step/add-step.component';
   HttpClientModule,
   BrowserModule,
   FormsModule,
-  BrowserAnimationsModule
+  BrowserAnimationsModule,
+  DragDropModule
   ],
   providers: [
     ProjectService,

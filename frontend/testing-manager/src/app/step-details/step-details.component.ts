@@ -12,8 +12,13 @@ export class StepDetailsComponent implements OnInit {
 
   @Input() step: Step;
   @ViewChild('closeBtn', {static: false}) closeBtn: ElementRef;
+  numbers: number[] = [];
 
-  constructor(private stepService: StepService, private projectService: ProjectService) { }
+  constructor(private stepService: StepService, private projectService: ProjectService) {
+    for (let i = 0; i < 10; i++) {
+      this.numbers.push(i);
+    }
+  }
 
   ngOnInit() {
   }

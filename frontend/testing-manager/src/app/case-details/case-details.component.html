@@ -20,9 +20,11 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewStepModal">Add New Step</button>
         <p><strong>Steps</strong></p>
         <ng-container *ngIf="testCase.steps.length > 0">
-            <ng-container *ngFor="let step of testCase.steps">
-                <app-step-list-element [step]="step"></app-step-list-element>
-            </ng-container>
+            <div cdkDropList class="dummyContainer" (cdkDropListDropped)="drop($event)">
+                <div cdkDrag *ngFor="let step of testCase.steps">
+                    <app-step-list-element [step]="step"></app-step-list-element>
+                </div>
+            </div>
         </ng-container>
         <ng-container *ngIf="testCase.steps.length == 0">
                 <p><strong>This case does not have steps yet</strong></p>

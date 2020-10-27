@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Case } from './../models/case';
 import { HttpClient } from '@angular/common/http';
+import { Step } from './../models/step';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,21 @@ export class CaseService {
       name: testCase.name,
       description: testCase.description,
       componentId: testCase.componentId
+    });
+  }
+
+  editStepList(testCase: Case) {
+    console.log(testCase);
+    for (let i = 0; i < testCase.steps.length; i++) {
+      testCase.steps[i].orderNumber = i + 1;
+    }
+    console.log('ordered list', testCase);
+    return this.httpClient.put('http://localhost:8080/case/editStepList', {
+      id: testCase.id,
+      name: testCase.name,
+      description: testCase.description,
+      componentId: testCase.componentId,
+      steps: testCase.steps
     });
   }
 

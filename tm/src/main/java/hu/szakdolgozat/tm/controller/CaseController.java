@@ -43,6 +43,11 @@ public class CaseController {
         return this.caseService.updateCase(updateDto);
     }
     
+    @PutMapping("/editStepList")
+    public CaseDto updateStepList(@Valid @RequestBody UpdateCaseDto updateDto) throws Exception {
+        return this.caseService.updateStepList(updateDto);
+    }
+    
     @DeleteMapping("/{id}")
     public void deleteCase(@PathVariable @Min(1) @NotNull Long id) throws Exception {
         this.caseService.deleteCase(id);

@@ -12,6 +12,8 @@ public interface CaseService {
     
     public CaseDto updateCase(UpdateCaseDto updateDto) throws Exception;
     
+    public CaseDto updateStepList(UpdateCaseDto updateDto) throws Exception;
+    
     public void deleteCase(Long id) throws Exception;
     
     public List<CaseDto> getCaseListByComponentId(Long id) throws Exception;
