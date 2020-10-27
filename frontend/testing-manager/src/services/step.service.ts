@@ -23,6 +23,17 @@ export class StepService {
     });
   }
 
+  editStep(step: Step) {
+    return this.httpClient.put('http://localhost:8080/step', {
+      id: step.id,
+      caseId: step.caseId,
+      description: step.description,
+      expectedResult: step.expectedResult,
+      comment: step.comment,
+      orderNumber: step.orderNumber
+    });
+  }
+
   deleteStep(id: number) {
     return this.httpClient.delete(`http://localhost:8080/step/${id}`, {});
   }
