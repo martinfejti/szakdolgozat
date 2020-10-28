@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Component as ComponentModel } from './../../models/component';
 
 @Component({
   selector: 'app-component-test',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./component-test.component.scss']
 })
 export class ComponentTestComponent implements OnInit {
+
+  @Input() component: ComponentModel;
 
   constructor() { }
 

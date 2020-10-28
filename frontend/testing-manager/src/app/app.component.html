@@ -40,7 +40,7 @@
             <app-step-details [step]="selectedStep"></app-step-details>
           </ng-container>
           <ng-container *ngIf="selectedView == 'RUN_TEST'">
-            RUN_TEST Page
+            <app-component-test [component]="componentForTest"></app-component-test>
           </ng-container>
       </div>
     </div>
