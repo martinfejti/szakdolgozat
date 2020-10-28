@@ -1,0 +1,18 @@
+<ng-container *ngIf="testCase">
+    <div id="case-desc-container-div">
+        <div id="case-name-div">
+            <p><strong>Name:</strong></p>
+            <p>{{ testCase.name }}</p>
+        </div>
+        <div id="case-description-div">
+            <p><strong>Description:</strong></p>
+            <p>{{ testCase.description }}</p>
+        </div>
+    </div>
+    <div id="step-list-container">
+        <p><strong>Step List</strong></p>
+        <ng-container *ngFor="let step of testCase.steps">
+            {{ step.description }}
+        </ng-container>
+    </div>
+</ng-container>

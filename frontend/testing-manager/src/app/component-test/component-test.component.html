@@ -1,3 +1,13 @@
 <ng-container *ngIf="component">
-    {{ component.name }}
+    <div id="component-name-header-div">
+        {{ component.name }}
+    </div>
+    <div id="case-container-div">
+        <p><strong>Testcases</strong></p>
+        <div id="case-container-inner-div">
+            <div *ngFor="let case of component.testCases; index as i">
+                <app-case-test [testCase]="case" [index]="i"></app-case-test>
+            </div>
+        </div>
+    </div>
 </ng-container>

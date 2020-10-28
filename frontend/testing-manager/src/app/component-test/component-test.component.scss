@@ -1,0 +1,21 @@
+$primary: rgb(111, 0, 225);
+
+#component-name-header-div {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 1em;
+    border-bottom: 1px solid lightgray;
+    background-color: lighten($primary, 50%);
+    height: 13%;
+}
+
+#case-container-div {
+    padding: 1em;
+    height: 87%;
+    overflow-y: auto;
+    border: 1px solid black;
+
+    strong {
+        font-size: 22px;
+    }
+}
