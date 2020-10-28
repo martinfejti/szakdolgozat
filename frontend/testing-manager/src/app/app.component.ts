@@ -7,6 +7,7 @@ import { CaseService } from './../services/case.service';
 import { Case } from './../models/case';
 import { StepService } from './../services/step.service';
 import { Step } from './../models/step';
+import { RunTestService } from './../services/run-test.service';
 
 @Component({
   selector: 'app-root',
@@ -27,8 +28,9 @@ export class AppComponent {
     private projectService: ProjectService,
     private componentService: ComponentService,
     private caseService: CaseService,
-    private stepService: StepService) {
-      this.selectedView = 'USERS_GUIDE';
+    private stepService: StepService,
+    private runTestService: RunTestService) {
+    this.selectedView = 'SELECT_PROJECT';
   }
 
   ngOnInit() {
@@ -73,9 +75,13 @@ export class AppComponent {
       this.componentForTest = result;
       this.selectedView = 'RUN_TEST';
     });
+
+    this.runTestService.closeComponentInstanceObservable.subscribe(() => {
+      this.selectedView = 'SELECT_PROJECT';
+    });
   }
 
-  changeSelectedView(type: 'PROJECT_DETAILS' | 'COMPONENT_DETAILS' | 'CASE_DETAILS' | 'STEP_DETAILS' | 'RUN_TEST' | 'USERS_GUIDE' | undefined) {
+  changeSelectedView(type: 'SELECT_PROJECT' | 'PROJECT_DETAILS' | 'COMPONENT_DETAILS' | 'CASE_DETAILS' | 'STEP_DETAILS' | 'RUN_TEST' | 'USERS_GUIDE' | undefined) {
     this.selectedView = type;
   }
 

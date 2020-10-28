@@ -42,8 +42,8 @@ export class ComponentTestComponent implements OnInit {
   closeComponentInstance() {
     this.runTestService.closeComponentInstance(this.newComponentInstance.id).subscribe(result => {
       console.log(result);
-      // show some page
       console.log('component instance closed');
+      alert('Test has been completed successfully!');
     });
   }
 }
