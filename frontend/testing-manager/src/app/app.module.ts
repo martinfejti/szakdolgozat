@@ -26,6 +26,7 @@ import { EditCaseComponent } from './edit-case/edit-case.component';
 import { StepDetailsComponent } from './step-details/step-details.component';
 import { AddStepComponent } from './add-step/add-step.component';
 import { EditStepComponent } from './edit-step/edit-step.component';
+import { ComponentTestComponent } from './component-test/component-test.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { EditStepComponent } from './edit-step/edit-step.component';
     EditCaseComponent,
     StepDetailsComponent,
     AddStepComponent,
-    EditStepComponent
+    EditStepComponent,
+    ComponentTestComponent
   ],
   imports: [
   HttpClientModule,
