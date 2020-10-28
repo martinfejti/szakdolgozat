@@ -1,4 +1,4 @@
-<ng-container *ngIf="testCase">
+<ng-container *ngIf="testCase && parentComponentInstance">
     <div id="case-desc-container-div">
         <div id="case-name-div">
             <p><strong>Name:</strong></p>
@@ -20,5 +20,5 @@
             <p><strong>There are no steps in this testcase!</strong></p>
         </ng-container>
     </div>
-    <button type="button" mat-button matStepperNext>Next</button>
+    <button type="button" mat-button matStepperNext (click)="createAndCloseCaseInstance()">Next</button>
 </ng-container>

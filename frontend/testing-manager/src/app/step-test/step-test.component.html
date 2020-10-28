@@ -1,12 +1,12 @@
-<ng-container *ngIf="step">
+<ng-container *ngIf="step && parentCaseInstance">
     <div id="step-list-element-div">
         <div id="step-list-element-order-number-div">{{ step.orderNumber }}</div>
         <div id="step-list-element-description-div">{{ step.description }}</div>
         <div id="step-list-element-expected-result-div">{{ step.expectedResult }}</div>
                 <div id="step-list-element-status-container-div">
-                    <div class="step-list-element-status-div">OK</div>
-                    <div class="step-list-element-status-div">NOK</div>
-                    <div class="step-list-element-status-div">ERR</div>
+                    <div class="step-list-element-status-div" (click)="createStepInstance('OK')">OK</div>
+                    <div class="step-list-element-status-div" (click)="createStepInstance('NOK')">NOK</div>
+                    <div class="step-list-element-status-div" (click)="createStepInstance('ERR')">ERR</div>
                 </div>
     </div>
 </ng-container>
