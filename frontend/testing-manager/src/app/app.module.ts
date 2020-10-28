@@ -2,6 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { MatStepperModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatIconModule,
+  MatProgressSpinnerModule,
+  MatSidenavModule,
+  MatMenuModule,
+  MatListModule,
+  MatDividerModule,
+  MatGridListModule,
+  MatExpansionModule,
+  MatCardModule,
+  MatTabsModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ProjectListComponent } from './project-list/project-list.component';
@@ -28,6 +43,7 @@ import { AddStepComponent } from './add-step/add-step.component';
 import { EditStepComponent } from './edit-step/edit-step.component';
 import { ComponentTestComponent } from './component-test/component-test.component';
 import { CaseTestComponent } from './case-test/case-test.component';
+import { StepTestComponent } from './step-test/step-test.component';
 
 @NgModule({
   declarations: [
@@ -50,14 +66,29 @@ import { CaseTestComponent } from './case-test/case-test.component';
     AddStepComponent,
     EditStepComponent,
     ComponentTestComponent,
-    CaseTestComponent
+    CaseTestComponent,
+    StepTestComponent
   ],
   imports: [
   HttpClientModule,
   BrowserModule,
   FormsModule,
   BrowserAnimationsModule,
-  DragDropModule
+  DragDropModule,
+  CdkStepperModule,
+  MatStepperModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatIconModule,
+  MatProgressSpinnerModule,
+  MatSidenavModule,
+  MatMenuModule,
+  MatListModule,
+  MatDividerModule,
+  MatGridListModule,
+  MatExpansionModule,
+  MatCardModule,
+  MatTabsModule
   ],
   providers: [
     ProjectService,

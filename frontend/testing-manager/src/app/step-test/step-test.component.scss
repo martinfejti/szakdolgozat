@@ -1,0 +1,54 @@
+#step-list-element-div {
+    width: 100%;
+    border: 1px solid lightgray;
+    height: 15vh;
+
+    #step-list-element-order-number-div {
+        width: 10%;
+        float: left;
+        border-right: 1px solid lightgray;
+        height: 100%;
+        line-height: 15vh;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    #step-list-element-description-div {
+        width: 30%;
+        float: left;
+        border-right: 1px solid lightgray;
+        height: 100%;
+        line-height: 15vh;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    #step-list-element-expected-result-div {
+        width: 30%;
+        float: left;
+        border-right: 1px solid lightgray;
+        height: 100%;
+        line-height: 15vh;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    #step-list-element-status-container-div {
+        width: 30%;
+        float: left;
+        height: 100%;
+        line-height: 15vh;
+        text-align: center;
+        vertical-align: middle;
+
+        .step-list-element-status-div {
+            width: 33.3%;
+            float: left;
+            height: 100%;
+            line-height: 15vh;
+            text-align: center;
+            vertical-align: center;
+            border-right: 1px solid lightgray;
+        }
+    }
+}
