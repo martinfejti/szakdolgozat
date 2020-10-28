@@ -18,6 +18,10 @@ export class ComponentDetailsComponent implements OnInit {
   ngOnInit() {
   }
 
+  openTestPage() {
+    this.componentService.notifyOpenTestPage(this.component);
+  }
+
   deleteComponent() {
     this.componentService.deleteComponent(this.component.id).subscribe((result) => {
       console.log(result);

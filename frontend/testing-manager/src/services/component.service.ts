@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class ComponentService {
 
   selectedComponentObservable = new Subject();
+  openTestPageObservable = new Subject();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -44,5 +45,9 @@ export class ComponentService {
     console.log('comp service notify');
     console.log(component);
     this.selectedComponentObservable.next(component);
+  }
+
+  notifyOpenTestPage(component: ComponentModel) {
+    this.openTestPageObservable.next(component);
   }
 }
