@@ -34,4 +34,11 @@ export class ComponentTestComponent implements OnInit {
     this.selectedIndex = index;
   }
 
+  closeComponentInstance() {
+    this.runTestService.closeComponentInstance(this.newComponentInstance.id).subscribe(result => {
+      console.log(result);
+      // show some page
+      console.log('component instance closed');
+    });
+  }
 }

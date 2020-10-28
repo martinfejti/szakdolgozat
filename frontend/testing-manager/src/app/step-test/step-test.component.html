@@ -4,9 +4,9 @@
         <div id="step-list-element-description-div">{{ step.description }}</div>
         <div id="step-list-element-expected-result-div">{{ step.expectedResult }}</div>
                 <div id="step-list-element-status-container-div">
-                    <div class="step-list-element-status-div" (click)="createStepInstance('OK')">OK</div>
-                    <div class="step-list-element-status-div" (click)="createStepInstance('NOK')">NOK</div>
-                    <div class="step-list-element-status-div" (click)="createStepInstance('ERR')">ERR</div>
+                    <div class="step-list-element-status-div" (click)="createStepInstance('OK')" [ngStyle]="{'cursor': (isStepDone) ? 'no-drop' : 'pointer'}" [ngStyle]="   {'background-color': (isStepDone) ? 'green' : 'white'}">OK</div>
+                    <div class="step-list-element-status-div" (click)="createStepInstance('NOK')" [ngStyle]="{'cursor': (isStepDone) ? 'no-drop' : 'pointer'}" [ngStyle]="{'background-color': (isStepDone) ? 'yellow' : 'white'}">NOK</div>
+                    <div class="step-list-element-status-div" (click)="createStepInstance('ERR')" [ngStyle]="{'cursor': (isStepDone) ? 'no-drop' : 'pointer'}" [ngStyle]="{'background-color': (isStepDone) ? 'red' : 'white'}">ERR</div>
                 </div>
     </div>
 </ng-container>

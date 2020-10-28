@@ -12,10 +12,12 @@ export class StepTestComponent implements OnInit {
 
   @Input() step: Step;
   parentCaseInstance: CaseInstance;
+  isStepDone: boolean;
 
   constructor(private runTestService: RunTestService) { }
 
   ngOnInit() {
+    this.isStepDone = false;
     this.runTestService.createCaseInstanceObservable.subscribe(caseResult => {
       this.parentCaseInstance = caseResult;
       console.log('new parent case', this.parentCaseInstance);
@@ -24,11 +26,16 @@ export class StepTestComponent implements OnInit {
   }
 
   createStepInstance(status: string) {
-    this.runTestService.createStepInstance(this.parentCaseInstance, this.step, status).subscribe(result => {
-      console.log('Step creeated', result);
-    }, error => {
-      console.log(error);
-    });
+    if (!this.isStepDone) {
+      this.isStepDone = true;
+      this.runTestService.createStepInstance(this.parentCaseInstance, this.step, status).subscribe(result => {
+        console.log('Step creeated', result);
+      }, error => {
+        console.log(error);
+      });
+    } else {
+      alert('Tha step instance has already been created!');
+    }
   }
 
 }

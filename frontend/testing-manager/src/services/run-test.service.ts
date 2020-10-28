@@ -33,12 +33,15 @@ export class RunTestService {
   }
 
   createStepInstance(parentCaseInstance: CaseInstance, step: Step, statusString: string) {
-    console.log(parentCaseInstance);
     return this.httpClient.post('http://localhost:8080/stepInstance', {
       stepId: step.id,
       caseInstanceId: parentCaseInstance.id,
       status: statusString
     });
+  }
+
+  closeComponentInstance(id: number) {
+    return this.httpClient.put(`http://localhost:8080/componentInstance/${id}`, {});
   }
 
   closeCaseInstance(id: number) {
