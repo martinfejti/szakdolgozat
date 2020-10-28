@@ -17,4 +17,11 @@ $primary: rgb(111, 0, 225);
     strong {
         font-size: 22px;
     }
+
+    .stepper-container {
+        background-color: mediumpurple;
+        border-radius: 5px;
+        overflow: hidden;
+        color: white;
+    }
 }
