@@ -13,6 +13,7 @@ export class CaseTestComponent implements OnInit {
 
   @Input() testCase: Case;
   @Input() index: number;
+  @Input() numberOfCases: number;
   parentComponentInstance: ComponentInstance;
   newCaseInstance: CaseInstance;
 
@@ -31,13 +32,17 @@ export class CaseTestComponent implements OnInit {
     });
   }
 
-  createAndCloseCaseInstance() {
-    this.runTestService.closeCaseInstance(this.newCaseInstance.id).subscribe(caseResult => {
-      console.log(caseResult);
-      console.log('case closed');
-    }, error => {
-      console.log(error);
-    });
+  createAndCloseCaseInstance(triggerComponentInstanceClose: boolean) {
+    if (!triggerComponentInstanceClose) {
+      this.runTestService.closeCaseInstance(this.newCaseInstance.id).subscribe(caseResult => {
+        console.log(caseResult);
+        console.log('case closed');
+      }, error => {
+        console.log(error);
+      });
+    } else {
+      this.runTestService.notifyClosingComponentInstance(this.parentComponentInstance.id);
+    }
 
   }
 

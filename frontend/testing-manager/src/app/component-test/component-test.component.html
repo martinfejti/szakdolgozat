@@ -7,7 +7,7 @@
         <div id="case-container-inner-div">
             <mat-horizontal-stepper linear style="color: black; background-color: white;">
                 <mat-step *ngFor="let case of component.testCases; index as i" label="Testcase">
-                    <app-case-test [testCase]="case" [index]="i"></app-case-test>
+                    <app-case-test [testCase]="case" [index]="i" [numberOfCases]="component.testCases.length"></app-case-test>
                 </mat-step>
             </mat-horizontal-stepper>
             <!--<cdk-step *ngFor="let case of component.testCases; index as i">

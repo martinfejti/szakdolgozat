@@ -28,6 +28,11 @@ export class ComponentTestComponent implements OnInit {
         console.log(error);
       });
     }
+
+    this.runTestService.closeComponentInstanceObservable.subscribe(closeComponentInstanceResult => {
+      console.log('Close component instance triggered', closeComponentInstanceResult);
+      this.closeComponentInstance();
+    });
   }
 
   onClick(index: number): void {

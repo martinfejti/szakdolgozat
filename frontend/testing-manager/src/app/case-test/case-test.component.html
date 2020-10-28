@@ -20,5 +20,10 @@
             <p><strong>There are no steps in this testcase!</strong></p>
         </ng-container>
     </div>
-    <button type="button" mat-button matStepperNext (click)="createAndCloseCaseInstance()">Next</button>
+    <ng-container *ngIf="index + 1 == numberOfCases">
+        <button type="button" class="btn btn-primary" (click)="createAndCloseCaseInstance(true)">Finish TTest</button>
+    </ng-container>
+    <ng-container *ngIf="index + 1 !== numberOfCases">
+        <button type="button" class="btn btn-primary" mat-button matStepperNext (click)="createAndCloseCaseInstance(false)">Next</button>
+    </ng-container>
 </ng-container>

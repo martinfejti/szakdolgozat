@@ -14,6 +14,7 @@ export class RunTestService {
 
   createComponentInstanceObservable = new Subject();
   createCaseInstanceObservable = new Subject();
+  closeComponentInstanceObservable = new Subject();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -54,5 +55,9 @@ export class RunTestService {
 
   notifyCaseInstanceCreation(caseInstance: CaseInstance) {
     this.createCaseInstanceObservable.next(caseInstance);
+  }
+
+  notifyClosingComponentInstance(id: number) {
+    this.closeComponentInstanceObservable.next(id);
   }
 }
