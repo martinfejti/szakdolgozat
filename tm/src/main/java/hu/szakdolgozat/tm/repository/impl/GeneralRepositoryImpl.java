@@ -6,7 +6,9 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import hu.szakdolgozat.tm.exceptions.PersistenceException;
 import hu.szakdolgozat.tm.repository.GeneralRepository;
+import hu.szakdolgozat.tm.utils.Constants;
 
 @Transactional
 @Repository
@@ -19,32 +21,32 @@ public class GeneralRepositoryImpl implements GeneralRepository {
     }
     
     @Override
-    public void createEntity(Object object) throws Exception {
+    public void createEntity(Object object) throws PersistenceException {
         try {
             this.entityManager.persist(object);
             this.entityManager.flush();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.CREATE_FAILED, e);
         }
     }
 
     @Override
-    public void updateEntity(Object object) throws Exception {
+    public void updateEntity(Object object) throws PersistenceException {
         try {
             this.entityManager.merge(object);
             this.entityManager.flush();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.UPDATE_FAILED, e);
         }
     }
 
     @Override
-    public void deleteEntity(Object object) throws Exception {
+    public void deleteEntity(Object object) throws PersistenceException {
         try {
             this.entityManager.remove(object);
             this.entityManager.flush();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.DELETE_FAILED, e);
         }
     }
 

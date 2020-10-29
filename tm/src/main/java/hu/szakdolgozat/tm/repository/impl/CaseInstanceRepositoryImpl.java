@@ -9,7 +9,9 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import hu.szakdolgozat.tm.entity.CaseInstanceEntity;
+import hu.szakdolgozat.tm.exceptions.PersistenceException;
 import hu.szakdolgozat.tm.repository.CaseInstanceRepository;
+import hu.szakdolgozat.tm.utils.Constants;
 
 @Repository
 public class CaseInstanceRepositoryImpl implements CaseInstanceRepository {
@@ -21,7 +23,7 @@ public class CaseInstanceRepositoryImpl implements CaseInstanceRepository {
     }
 
     @Override
-    public List<CaseInstanceEntity> getCaseInstanceListByCaseId(Long id) throws Exception {
+    public List<CaseInstanceEntity> getCaseInstanceListByCaseId(Long id) throws PersistenceException {
         List<CaseInstanceEntity> resultList = null;
         
         try {
@@ -30,14 +32,14 @@ public class CaseInstanceRepositoryImpl implements CaseInstanceRepository {
             
             resultList = query.getResultList();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return resultList;
     }
 
     @Override
-    public List<CaseInstanceEntity> getCaseInstanceListByComponentInstanceId(Long id) throws Exception {
+    public List<CaseInstanceEntity> getCaseInstanceListByComponentInstanceId(Long id) throws PersistenceException {
         List<CaseInstanceEntity> resultList = null;
         
         try {
@@ -46,14 +48,14 @@ public class CaseInstanceRepositoryImpl implements CaseInstanceRepository {
             
             resultList = query.getResultList();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return resultList;
     }
 
     @Override
-    public CaseInstanceEntity getCaseInstanceById(Long id) throws Exception {
+    public CaseInstanceEntity getCaseInstanceById(Long id) throws PersistenceException {
         CaseInstanceEntity result = null;
         
         try {
@@ -62,7 +64,7 @@ public class CaseInstanceRepositoryImpl implements CaseInstanceRepository {
             
             result = query.getSingleResult();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return result;

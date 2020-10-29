@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import hu.szakdolgozat.tm.entity.StepInstanceStatusEntity;
 import hu.szakdolgozat.tm.entity.StepInstanceStatusEnum;
+import hu.szakdolgozat.tm.exceptions.PersistenceException;
 import hu.szakdolgozat.tm.repository.StepInstanceStatusRepository;
+import hu.szakdolgozat.tm.utils.Constants;
 
 @Service
 public class StepInstanceStatusRepositoryImpl implements StepInstanceStatusRepository {
@@ -21,7 +23,7 @@ public class StepInstanceStatusRepositoryImpl implements StepInstanceStatusRepos
     }
 
     @Override
-    public StepInstanceStatusEntity getStepInstanceStatusByStatus(StepInstanceStatusEnum statusEnum) throws Exception {
+    public StepInstanceStatusEntity getStepInstanceStatusByStatus(StepInstanceStatusEnum statusEnum) throws PersistenceException {
         StepInstanceStatusEntity result = null;
         
         try {
@@ -30,7 +32,7 @@ public class StepInstanceStatusRepositoryImpl implements StepInstanceStatusRepos
             
             result = query.getSingleResult();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return result;

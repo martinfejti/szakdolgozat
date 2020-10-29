@@ -9,7 +9,9 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import hu.szakdolgozat.tm.entity.ComponentEntity;
+import hu.szakdolgozat.tm.exceptions.PersistenceException;
 import hu.szakdolgozat.tm.repository.ComponentRepository;
+import hu.szakdolgozat.tm.utils.Constants;
 
 @Repository
 public class ComponentRepositoryImpl implements ComponentRepository {
@@ -21,7 +23,7 @@ public class ComponentRepositoryImpl implements ComponentRepository {
     }
     
     @Override
-    public ComponentEntity getComponentEntityById(Long id) throws Exception {
+    public ComponentEntity getComponentEntityById(Long id) throws PersistenceException {
         ComponentEntity result = null;
         
         try {
@@ -30,14 +32,14 @@ public class ComponentRepositoryImpl implements ComponentRepository {
             
             result = query.getSingleResult();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return result;
     }
 
     @Override
-    public List<ComponentEntity> getComponentListByProjectId(Long id) throws Exception {
+    public List<ComponentEntity> getComponentListByProjectId(Long id) throws PersistenceException {
         List<ComponentEntity> resultList = null;
         
         try {
@@ -46,7 +48,7 @@ public class ComponentRepositoryImpl implements ComponentRepository {
             
             resultList = query.getResultList();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return resultList;

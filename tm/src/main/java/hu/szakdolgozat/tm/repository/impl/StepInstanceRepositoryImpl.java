@@ -9,7 +9,9 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import hu.szakdolgozat.tm.entity.StepInstanceEntity;
+import hu.szakdolgozat.tm.exceptions.PersistenceException;
 import hu.szakdolgozat.tm.repository.StepInstanceRepository;
+import hu.szakdolgozat.tm.utils.Constants;
 
 @Repository
 public class StepInstanceRepositoryImpl implements StepInstanceRepository {
@@ -21,7 +23,7 @@ public class StepInstanceRepositoryImpl implements StepInstanceRepository {
     }
 
     @Override
-    public List<StepInstanceEntity> getStepInstanceEntityListByStepId(Long id) throws Exception {
+    public List<StepInstanceEntity> getStepInstanceEntityListByStepId(Long id) throws PersistenceException {
         List<StepInstanceEntity> resultList = null;
         
         try {
@@ -30,14 +32,14 @@ public class StepInstanceRepositoryImpl implements StepInstanceRepository {
             
             resultList = query.getResultList();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return resultList;
     }
 
     @Override
-    public List<StepInstanceEntity> getStepInstanceEntityListByCaseInstanceId(Long id) throws Exception {
+    public List<StepInstanceEntity> getStepInstanceEntityListByCaseInstanceId(Long id) throws PersistenceException {
         List<StepInstanceEntity> resultList = null;
         
         try {
@@ -46,7 +48,7 @@ public class StepInstanceRepositoryImpl implements StepInstanceRepository {
             
             resultList = query.getResultList();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return resultList;

@@ -9,7 +9,9 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import hu.szakdolgozat.tm.entity.ComponentInstanceEntity;
+import hu.szakdolgozat.tm.exceptions.PersistenceException;
 import hu.szakdolgozat.tm.repository.ComponentInstanceRepository;
+import hu.szakdolgozat.tm.utils.Constants;
 
 @Repository
 public class ComponentInstanceRepositoryImpl implements ComponentInstanceRepository {
@@ -21,7 +23,7 @@ public class ComponentInstanceRepositoryImpl implements ComponentInstanceReposit
     }
 
     @Override
-    public List<ComponentInstanceEntity> getComponentInstanceListByComponentId(Long id) throws Exception {
+    public List<ComponentInstanceEntity> getComponentInstanceListByComponentId(Long id) throws PersistenceException {
         List<ComponentInstanceEntity> resultList = null;
         
         try {
@@ -30,14 +32,14 @@ public class ComponentInstanceRepositoryImpl implements ComponentInstanceReposit
             
             resultList = query.getResultList();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return resultList;
     }
 
     @Override
-    public List<ComponentInstanceEntity> getAllComponentInstances() throws Exception {
+    public List<ComponentInstanceEntity> getAllComponentInstances() throws PersistenceException {
         List<ComponentInstanceEntity> resultList = null;
         
         try {
@@ -45,14 +47,14 @@ public class ComponentInstanceRepositoryImpl implements ComponentInstanceReposit
             
             resultList = query.getResultList();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return resultList;
     }
 
     @Override
-    public ComponentInstanceEntity getComponentInstanceEntityById(Long id) throws Exception {
+    public ComponentInstanceEntity getComponentInstanceEntityById(Long id) throws PersistenceException {
         ComponentInstanceEntity result = null;
         
         try {
@@ -61,7 +63,7 @@ public class ComponentInstanceRepositoryImpl implements ComponentInstanceReposit
             
             result = query.getSingleResult();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return result;

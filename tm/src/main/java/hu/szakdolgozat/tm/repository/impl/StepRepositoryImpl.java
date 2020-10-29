@@ -9,7 +9,9 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import hu.szakdolgozat.tm.entity.StepEntity;
+import hu.szakdolgozat.tm.exceptions.PersistenceException;
 import hu.szakdolgozat.tm.repository.StepRepository;
+import hu.szakdolgozat.tm.utils.Constants;
 
 @Repository
 public class StepRepositoryImpl implements StepRepository {
@@ -21,7 +23,7 @@ public class StepRepositoryImpl implements StepRepository {
     }
 
     @Override
-    public StepEntity getStepEntityById(Long id) throws Exception {
+    public StepEntity getStepEntityById(Long id) throws PersistenceException {
         StepEntity result = null;
         
         try {
@@ -30,14 +32,14 @@ public class StepRepositoryImpl implements StepRepository {
             
             result = query.getSingleResult();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return result;
     }
 
     @Override
-    public List<StepEntity> getStepEntityListByCaseId(Long id) throws Exception {
+    public List<StepEntity> getStepEntityListByCaseId(Long id) throws PersistenceException {
         List<StepEntity> resultList = null;
         
         try {
@@ -46,7 +48,7 @@ public class StepRepositoryImpl implements StepRepository {
             
             resultList = query.getResultList();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return resultList;

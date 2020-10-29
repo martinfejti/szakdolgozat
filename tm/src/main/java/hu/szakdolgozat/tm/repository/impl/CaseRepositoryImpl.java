@@ -9,7 +9,9 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import hu.szakdolgozat.tm.entity.CaseEntity;
+import hu.szakdolgozat.tm.exceptions.PersistenceException;
 import hu.szakdolgozat.tm.repository.CaseRepository;
+import hu.szakdolgozat.tm.utils.Constants;
 
 @Repository
 public class CaseRepositoryImpl implements CaseRepository {
@@ -21,7 +23,7 @@ public class CaseRepositoryImpl implements CaseRepository {
     }
 
     @Override
-    public CaseEntity getCaseEntityById(Long id) throws Exception {
+    public CaseEntity getCaseEntityById(Long id) throws PersistenceException {
         CaseEntity result = null;
         
         try {
@@ -30,14 +32,14 @@ public class CaseRepositoryImpl implements CaseRepository {
             
             result = query.getSingleResult();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return result;
     }
 
     @Override
-    public List<CaseEntity> getCaseEntityListByComponentId(Long id) throws Exception {
+    public List<CaseEntity> getCaseEntityListByComponentId(Long id) throws PersistenceException {
         List<CaseEntity> resultList = null;
         
         try {
@@ -46,7 +48,7 @@ public class CaseRepositoryImpl implements CaseRepository {
             
             resultList = query.getResultList();
         } catch (RuntimeException e) {
-            throw new Exception(e);
+            throw new PersistenceException(Constants.ErrorMessages.QUERY_FAILED, e);
         }
         
         return resultList;
