@@ -1,3 +1,5 @@
-<div (click)="onSelectedProject(project)">
-    {{project.name}}
-</div>
+<ng-container *ngIf="project">
+    <div id="project-list-element-div" (click)="onSelectedProject(project)">
+        {{project.name}}
+    </div>
+</ng-container>

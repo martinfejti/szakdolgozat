@@ -1,16 +1,7 @@
 #project-list-container-div {
-    border: 2px solid lightgrey;
+    border: 3px solid lightgray;
     border-radius: 10px;
-    height: 99%;
+    height: 100%;
     overflow: auto;
-}
-
-#project-list-element-div {
-    border-bottom: 1px solid lightgray;
-    padding: 15px;
-
-    &:hover {
-        background: lightgray;
-        cursor: pointer;
-    }
+    width: 100%;
 }

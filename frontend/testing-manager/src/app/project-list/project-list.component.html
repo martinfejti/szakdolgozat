@@ -1,11 +1,9 @@
 <ng-container *ngIf="projects">
         <div id="project-list-container-div">
                 <ng-container *ngFor="let project of projects">
-                        <div id="project-list-element-div">
                                 <app-project-list-element
                                         [project] = "project"
                                 ></app-project-list-element>
-                        </div>
                 </ng-container>
         </div>     
 </ng-container>
