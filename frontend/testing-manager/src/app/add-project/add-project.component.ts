@@ -15,8 +15,9 @@ export class AddProjectComponent implements OnInit {
     shortDescription: null,
     id: null,
     longDescription: null,
-    components: null
+    components: []
   };
+  createdProject: Project;
   @ViewChild('closeBtn', {static: false}) closeBtn: ElementRef;
 
   constructor(@Inject(AddProjectService) private addProjectService: AddProjectService, private projectService: ProjectService) { }
@@ -28,6 +29,7 @@ export class AddProjectComponent implements OnInit {
     if (this.project.name && this.project.shortDescription) {
       this.addProjectService.addProject(this.project).subscribe(result => {
         console.log('Project created', result);
+        this.setFieldsToNewProject(result);
         this.closeBtn.nativeElement.click();
         this.projectService.notifyProjectCreation();
         this.projectService.notifySelectedProject(result);
@@ -39,6 +41,11 @@ export class AddProjectComponent implements OnInit {
     } else {
       alert('Name and short description fields are required!');
     }
+  }
+
+  setFieldsToNewProject(result: any) {
+    this.createdProject = result;
+    this.createdProject.components = [];
   }
 
 }
