@@ -27,13 +27,21 @@ export class AddCaseComponent implements OnInit {
   }
 
   addCase() {
-    this.testCase.componentId = this.parentComponent.id;
-    this.caseService.createCase(this.testCase).subscribe(result => {
-      console.log(result);
-      this.closeBtn.nativeElement.click();
-      this.projectService.notifyProjectCreation();
-      this.caseService.notifySelectedCase(this.testCase);
-    });
+    if (this.testCase.name && this.testCase.description) {
+      this.testCase.componentId = this.parentComponent.id;
+      this.caseService.createCase(this.testCase).subscribe(result => {
+        console.log(result);
+        this.closeBtn.nativeElement.click();
+        this.projectService.notifyProjectCreation();
+        this.caseService.notifySelectedCase(this.testCase);
+        alert('Case has been successfully created!');
+      }, error => {
+        console.log(error);
+        alert('A problem has occured during case creation!');
+      });
+    } else {
+      alert('Name and short description fields are required!');
+    }
   }
 
 }

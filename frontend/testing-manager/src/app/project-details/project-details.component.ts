@@ -23,8 +23,10 @@ export class ProjectDetailsComponent implements OnInit {
       this.projectService.notifyProjectDeletion();
       this.closeBtn.nativeElement.click();
       this.project = null;
+      alert('Project has been successfully deleted!');
     }, error => {
       console.log(error);
+      alert('A problem has occured during project deletion!');
     });
   }
 

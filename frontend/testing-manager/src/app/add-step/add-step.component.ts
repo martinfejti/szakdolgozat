@@ -41,16 +41,22 @@ export class AddStepComponent implements OnInit {
   }
 
   addStep() {
-    this.step.caseId = this.parentCase.id;
-    this.step.orderNumber = this.orderNumberOfNewStep;
-    this.stepService.createStep(this.step).subscribe(result => {
-      console.log(result);
-      this.projectService.notifyProjectCreation();
-      this.stepService.notifySelectedStep(this.step);
-      this.closeBtn.nativeElement.click();
-    }, error => {
-      console.log(error);
-    });
+    if (this.step.description && this.step.expectedResult) {
+      this.step.caseId = this.parentCase.id;
+      this.step.orderNumber = this.orderNumberOfNewStep;
+      this.stepService.createStep(this.step).subscribe(result => {
+        console.log(result);
+        this.projectService.notifyProjectCreation();
+        this.stepService.notifySelectedStep(this.step);
+        this.closeBtn.nativeElement.click();
+        alert('Step has been successfully created!');
+      }, error => {
+        console.log(error);
+        alert('A problem has occured during step creation!');
+      });
+    } else {
+      alert('Description and expected result fields are required to fill!');
+    }
   }
 
 }

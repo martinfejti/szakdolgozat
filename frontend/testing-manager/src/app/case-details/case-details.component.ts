@@ -32,8 +32,10 @@ export class CaseDetailsComponent implements OnInit {
       this.projectService.notifyProjectDeletion();
       this.testCase = null;
       this.closeBtn.nativeElement.click();
+      alert('Case has been successfully deleted!');
     }, error => {
       console.log(error);
+      alert('A problem has occured during case deletion!');
     });
   }
 
@@ -48,6 +50,7 @@ export class CaseDetailsComponent implements OnInit {
       this.caseService.notifySelectedCase(result);
     }, error => {
       console.log(error);
+      alert('A problem has occured during case edition!');
     });
   }
 }

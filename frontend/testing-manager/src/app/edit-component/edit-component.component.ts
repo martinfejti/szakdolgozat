@@ -19,12 +19,18 @@ export class EditComponentComponent implements OnInit {
   }
 
   editComponent() {
-    this.componentService.editComponent(this.component).subscribe(result => {
-      console.log(result);
-      this.closeBtn.nativeElement.click();
-      this.projectService.notifyProjectEdition();
-    }, error => {
-      console.log(error);
-    });
+    if (this.component.name && this.component.description && this.component.author && this.component.version) {
+      this.componentService.editComponent(this.component).subscribe(result => {
+        console.log(result);
+        this.closeBtn.nativeElement.click();
+        this.projectService.notifyProjectEdition();
+        alert('Component has been successfully edited!');
+      }, error => {
+        console.log(error);
+        alert('A problem has occured during component creation!');
+      });
+    } else {
+      alert('All fields are required to fill!');
+    }
   }
 }

@@ -19,13 +19,18 @@ export class EditStepComponent implements OnInit {
   }
 
   editStep() {
-    this.stepService.editStep(this.step).subscribe(result => {
-      console.log(result);
-      this.projectService.notifyProjectEdition();
-      this.closeBtn.nativeElement.click();
-    }, error => {
-      console.log(error);
-    });
+    if (this.step.description && this.step.expectedResult) {
+      this.stepService.editStep(this.step).subscribe(result => {
+        console.log(result);
+        this.projectService.notifyProjectEdition();
+        this.closeBtn.nativeElement.click();
+        alert('Step has been successfully edited!');
+      }, error => {
+        console.log(error);
+        alert('A problem has occured during step edition!');
+      });
+    } else {
+      alert('Description and expected result fields are required to fill!');
+    }
   }
-
 }

@@ -31,6 +31,7 @@ export class AddProjectComponent implements OnInit {
         this.closeBtn.nativeElement.click();
         this.projectService.notifyProjectCreation();
         this.projectService.notifySelectedProject(result);
+        alert('Project has been successfully created!');
       }, error => {
         alert('A problem has occured during project creation!');
         console.log(error);

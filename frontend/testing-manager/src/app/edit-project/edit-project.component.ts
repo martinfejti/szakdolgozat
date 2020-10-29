@@ -28,13 +28,19 @@ export class EditProjectComponent implements OnInit {
   }
 
   editProject() {
-    this.editProjectService.editProject(this.project).subscribe(result => {
-      console.log(result);
-      this.closeBtn.nativeElement.click();
-      this.projectService.notifyProjectEdition();
-    }, error => {
-      console.log(error);
-    });
+    if (this.project.name && this.project.shortDescription) {
+      this.editProjectService.editProject(this.project).subscribe(result => {
+        console.log(result);
+        this.closeBtn.nativeElement.click();
+        this.projectService.notifyProjectEdition();
+        alert('Project has been successfully edited!');
+      }, error => {
+        console.log(error);
+        alert('A problem has occured during project edition!');
+      });
+    } else {
+      alert('Name and short description fields are required!');
+    }
   }
 
 }

@@ -28,6 +28,10 @@ export class ComponentDetailsComponent implements OnInit {
       this.projectService.notifyProjectDeletion();
       this.component = null;
       this.closeBtn.nativeElement.click();
+      alert('Component has been successfully deleted!');
+    }, error => {
+      console.log(error);
+      alert('A problem has occured during component deletion!');
     });
   }
 

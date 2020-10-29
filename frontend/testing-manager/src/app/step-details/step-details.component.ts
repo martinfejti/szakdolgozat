@@ -29,6 +29,10 @@ export class StepDetailsComponent implements OnInit {
       this.projectService.notifyProjectDeletion();
       this.step = null;
       this.closeBtn.nativeElement.click();
+      alert('Step has been successfully deleted!');
+    }, error => {
+      console.log(error);
+      alert('A problem has occured during step deletion!');
     });
   }
 
