@@ -43,7 +43,9 @@
             <app-component-test [component]="componentForTest"></app-component-test>
           </ng-container>
           <ng-container *ngIf="selectedView == 'SELECT_PROJECT'">
-            Majdani div ami felszólit projekt kiválasztásra vagy létrehozásra
+            <div id="no-project-div">
+              Please select an existing project from the Project List or create a new one with the Add New Project button!
+            </div>
           </ng-container>
       </div>
     </div>
