@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import hu.szakdolgozat.tm.dto.ComponentDto;
 import hu.szakdolgozat.tm.dto.CreateComponentDto;
 import hu.szakdolgozat.tm.dto.UpdateComponentDto;
+import hu.szakdolgozat.tm.exceptions.ControllerException;
+import hu.szakdolgozat.tm.exceptions.ServiceException;
 import hu.szakdolgozat.tm.service.ComponentService;
 
 @CrossOrigin
@@ -34,22 +36,38 @@ public class ComponentController {
     }
     
     @PostMapping
-    public ComponentDto createComponent(@Valid @RequestBody CreateComponentDto createDto) throws Exception {
-        return this.componentService.createComponent(createDto);
+    public ComponentDto createComponent(@Valid @RequestBody CreateComponentDto createDto) throws ControllerException {
+        try {
+            return this.componentService.createComponent(createDto);
+        } catch (ServiceException e) {
+            throw new ControllerException(e);
+        }
     }
     
     @PutMapping
-    public ComponentDto updateComponent(@Valid @RequestBody UpdateComponentDto updateComponentDto) throws Exception {
-        return this.componentService.updateComponent(updateComponentDto);
+    public ComponentDto updateComponent(@Valid @RequestBody UpdateComponentDto updateComponentDto) throws ControllerException {
+        try {
+            return this.componentService.updateComponent(updateComponentDto);
+        } catch (ServiceException e) {
+            throw new ControllerException(e);
+        }
     }
     
     @DeleteMapping("/{id}")
-    public void deleteComponent(@PathVariable @Min(1) @NotNull Long id) throws Exception {
-        this.componentService.deleteComponent(id);
+    public void deleteComponent(@PathVariable @Min(1) @NotNull Long id) throws ControllerException {
+        try {
+            this.componentService.deleteComponent(id);
+        } catch (ServiceException e) {
+            throw new ControllerException(e);
+        }
     }
     
     @GetMapping("/{id}")
-    public List<ComponentDto> getComponentsByProjectId(@PathVariable @Min(1) @NotNull Long id) throws Exception {
-        return this.componentService.getComponentsByProjectId(id);
+    public List<ComponentDto> getComponentsByProjectId(@PathVariable @Min(1) @NotNull Long id) throws ControllerException {
+        try {
+            return this.componentService.getComponentsByProjectId(id);
+        } catch (ServiceException e) {
+            throw new ControllerException(e);
+        }
     }
 }

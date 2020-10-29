@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hu.szakdolgozat.tm.dto.CreateStepInstanceDto;
 import hu.szakdolgozat.tm.dto.StepInstanceDto;
+import hu.szakdolgozat.tm.exceptions.ControllerException;
+import hu.szakdolgozat.tm.exceptions.ServiceException;
 import hu.szakdolgozat.tm.service.StepInstanceService;
 
 @CrossOrigin
@@ -31,17 +33,29 @@ public class StepInstanceController {
     }
     
     @PostMapping
-    public StepInstanceDto createStepInstance(@Valid @RequestBody CreateStepInstanceDto createDto) throws Exception {
-        return this.stepInstanceService.createStepInstance(createDto);
+    public StepInstanceDto createStepInstance(@Valid @RequestBody CreateStepInstanceDto createDto) throws ControllerException {
+        try {
+            return this.stepInstanceService.createStepInstance(createDto);
+        } catch (ServiceException e) {
+            throw new ControllerException(e);
+        }
     }
     
     @GetMapping("/getStepInstancesByCaseInstanceId/{id}")
-    public List<StepInstanceDto> getStepInstancesByCaseInstanceId(@PathVariable @Min(1) @NotNull Long id) throws Exception {
-        return this.stepInstanceService.getStepInstancesByCaseInstanceId(id);
+    public List<StepInstanceDto> getStepInstancesByCaseInstanceId(@PathVariable @Min(1) @NotNull Long id) throws ControllerException {
+        try {
+            return this.stepInstanceService.getStepInstancesByCaseInstanceId(id);
+        } catch (ServiceException e) {
+            throw new ControllerException(e);
+        }
     }
     
     @GetMapping("/getStepInstancesByStepId/{id}")
-    public List<StepInstanceDto> getStepInstancesByStepId(@PathVariable @Min(1) @NotNull Long id) throws Exception {
-        return this.stepInstanceService.getStepInstanceByStepId(id);
+    public List<StepInstanceDto> getStepInstancesByStepId(@PathVariable @Min(1) @NotNull Long id) throws ControllerException {
+        try {
+            return this.stepInstanceService.getStepInstanceByStepId(id);
+        } catch (ServiceException e) {
+            throw new ControllerException(e);
+        }
     }
 }
