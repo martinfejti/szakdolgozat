@@ -11,6 +11,8 @@ import hu.szakdolgozat.tm.dto.StepDto;
 import hu.szakdolgozat.tm.dto.UpdateStepDto;
 import hu.szakdolgozat.tm.entity.CaseEntity;
 import hu.szakdolgozat.tm.entity.StepEntity;
+import hu.szakdolgozat.tm.exceptions.PersistenceException;
+import hu.szakdolgozat.tm.exceptions.ServiceException;
 import hu.szakdolgozat.tm.mapper.StepMapper;
 import hu.szakdolgozat.tm.repository.CaseRepository;
 import hu.szakdolgozat.tm.repository.GeneralRepository;
@@ -35,50 +37,66 @@ public class StepServiceImpl implements StepService {
     }
 
     @Override
-    public StepDto createStep(CreateStepDto createDto) throws Exception {
-        StepEntity stepEntity = STEP_MAPPER.mapCreateStepDtoToEntity(createDto);
-        
-        this.generalRepository.createEntity(stepEntity);
-        
-        return STEP_MAPPER.mapStepEntityToDto(stepEntity);
+    public StepDto createStep(CreateStepDto createDto) throws ServiceException {
+        try {            
+            StepEntity stepEntity = STEP_MAPPER.mapCreateStepDtoToEntity(createDto);
+            
+            this.generalRepository.createEntity(stepEntity);
+            
+            return STEP_MAPPER.mapStepEntityToDto(stepEntity);
+        } catch (PersistenceException e) {
+            throw new ServiceException(e);
+        }
     }
     
     @Override
-    public StepDto updateStep(UpdateStepDto updateDto) throws Exception {
-        StepEntity stepEntity = this.stepRepository.getStepEntityById(updateDto.getId());
-        stepEntity.setDescription(updateDto.getDescription());
-        stepEntity.setExpectedResult(updateDto.getExpectedResult());
-        stepEntity.setComment(updateDto.getComment());
-        
-        this.generalRepository.updateEntity(stepEntity);
-        
-        return STEP_MAPPER.mapStepEntityToDto(stepEntity);
+    public StepDto updateStep(UpdateStepDto updateDto) throws ServiceException {
+        try {
+            StepEntity stepEntity = this.stepRepository.getStepEntityById(updateDto.getId());
+            stepEntity.setDescription(updateDto.getDescription());
+            stepEntity.setExpectedResult(updateDto.getExpectedResult());
+            stepEntity.setComment(updateDto.getComment());
+            
+            this.generalRepository.updateEntity(stepEntity);
+            
+            return STEP_MAPPER.mapStepEntityToDto(stepEntity);
+        } catch (PersistenceException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public void deleteStep(Long id) throws Exception {
-        StepEntity stepEntityToDelete = this.stepRepository.getStepEntityById(id);
-        CaseEntity parentCaseEntityBeforeStepDelete = this.caseRepository.getCaseEntityById(stepEntityToDelete.getTestCase().getId());
-        
-        this.generalRepository.deleteEntity(stepEntityToDelete);
-        this.generalRepository.updateEntity(parentCaseEntityBeforeStepDelete);
-        
-        CaseEntity parentCaseEntityAfterStepDelete = this.caseRepository.getCaseEntityById(parentCaseEntityBeforeStepDelete.getId());
-        
-        for (int i = 0; i < parentCaseEntityAfterStepDelete.getSteps().size(); i++) {
-            StepEntity stepEntity = this.stepRepository.getStepEntityById(parentCaseEntityAfterStepDelete.getSteps().get(i).getId());
-            stepEntity.setOrderNumber(i + 1);
-            this.generalRepository.updateEntity(stepEntity);
+    public void deleteStep(Long id) throws ServiceException {
+        try {            
+            StepEntity stepEntityToDelete = this.stepRepository.getStepEntityById(id);
+            CaseEntity parentCaseEntityBeforeStepDelete = this.caseRepository.getCaseEntityById(stepEntityToDelete.getTestCase().getId());
+            
+            this.generalRepository.deleteEntity(stepEntityToDelete);
+            this.generalRepository.updateEntity(parentCaseEntityBeforeStepDelete);
+            
+            CaseEntity parentCaseEntityAfterStepDelete = this.caseRepository.getCaseEntityById(parentCaseEntityBeforeStepDelete.getId());
+            
+            for (int i = 0; i < parentCaseEntityAfterStepDelete.getSteps().size(); i++) {
+                StepEntity stepEntity = this.stepRepository.getStepEntityById(parentCaseEntityAfterStepDelete.getSteps().get(i).getId());
+                stepEntity.setOrderNumber(i + 1);
+                this.generalRepository.updateEntity(stepEntity);
+            }
+            
+            this.generalRepository.updateEntity(parentCaseEntityAfterStepDelete);
+        } catch (PersistenceException e) {
+            throw new ServiceException(e);
         }
-        
-        this.generalRepository.updateEntity(parentCaseEntityAfterStepDelete);
     }
     
     @Override
-    public List<StepDto> getAllStepsByCaseId(Long id) throws Exception {
-        List<StepEntity> stepEntityList = this.stepRepository.getStepEntityListByCaseId(id);
-        
-        return STEP_MAPPER.mapStepEntityListToDtoList(stepEntityList);
+    public List<StepDto> getAllStepsByCaseId(Long id) throws ServiceException {
+        try {
+            List<StepEntity> stepEntityList = this.stepRepository.getStepEntityListByCaseId(id);
+            
+            return STEP_MAPPER.mapStepEntityListToDtoList(stepEntityList);
+        } catch (PersistenceException e) {
+            throw new ServiceException(e);
+        }
     }
 
 }

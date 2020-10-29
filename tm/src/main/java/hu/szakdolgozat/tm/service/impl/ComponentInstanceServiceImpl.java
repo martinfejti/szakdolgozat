@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import hu.szakdolgozat.tm.dto.ComponentInstanceDto;
 import hu.szakdolgozat.tm.dto.CreateComponentInstanceDto;
 import hu.szakdolgozat.tm.entity.ComponentInstanceEntity;
+import hu.szakdolgozat.tm.exceptions.PersistenceException;
+import hu.szakdolgozat.tm.exceptions.ServiceException;
 import hu.szakdolgozat.tm.mapper.ComponentInstanceMapper;
 import hu.szakdolgozat.tm.repository.ComponentInstanceRepository;
 import hu.szakdolgozat.tm.repository.GeneralRepository;
@@ -30,36 +32,53 @@ public class ComponentInstanceServiceImpl implements ComponentInstanceService {
     }
 
     @Override
-    public ComponentInstanceDto createComponentInstance(CreateComponentInstanceDto createDto) throws Exception {
-        ComponentInstanceEntity componentInstanceEntity = COMPONENT_INSTANCE_MAPPER.mapCreateComponentInstanceDtoToEntity(createDto);
-        componentInstanceEntity.setOpenDate(new Date());
-        
-        this.generalRepository.createEntity(componentInstanceEntity);
-        
-        return COMPONENT_INSTANCE_MAPPER.mapComponentInstanceEntityToDto(componentInstanceEntity);
+    public ComponentInstanceDto createComponentInstance(CreateComponentInstanceDto createDto) throws ServiceException {
+        try {
+            ComponentInstanceEntity componentInstanceEntity = COMPONENT_INSTANCE_MAPPER.mapCreateComponentInstanceDtoToEntity(createDto);
+            componentInstanceEntity.setOpenDate(new Date());
+            
+            this.generalRepository.createEntity(componentInstanceEntity);
+            
+            return COMPONENT_INSTANCE_MAPPER.mapComponentInstanceEntityToDto(componentInstanceEntity);            
+        } catch (PersistenceException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public ComponentInstanceDto closeComponentInstance(Long id) throws Exception {
-        ComponentInstanceEntity componentInstanceEntity = this.componentInstanceRepository.getComponentInstanceEntityById(id);
-        componentInstanceEntity.setCloseDate(new Date());
+    public ComponentInstanceDto closeComponentInstance(Long id) throws ServiceException {
+        try {            
+            ComponentInstanceEntity componentInstanceEntity = this.componentInstanceRepository.getComponentInstanceEntityById(id);
+            componentInstanceEntity.setCloseDate(new Date());
+            
+            this.generalRepository.updateEntity(componentInstanceEntity);
+            
+            return COMPONENT_INSTANCE_MAPPER.mapComponentInstanceEntityToDto(componentInstanceEntity);
+        } catch (PersistenceException e) {
+            throw new ServiceException(e);
+        }
         
-        this.generalRepository.updateEntity(componentInstanceEntity);
-        
-        return COMPONENT_INSTANCE_MAPPER.mapComponentInstanceEntityToDto(componentInstanceEntity);
     }
 
     @Override
-    public List<ComponentInstanceDto> getAllComponentInstances() throws Exception {
-        List<ComponentInstanceEntity> componentInstanceEntityList = this.componentInstanceRepository.getAllComponentInstances();
-        
-        return COMPONENT_INSTANCE_MAPPER.mapComponentInstanceEntityListToDtoList(componentInstanceEntityList);
+    public List<ComponentInstanceDto> getAllComponentInstances() throws ServiceException {
+        try {            
+            List<ComponentInstanceEntity> componentInstanceEntityList = this.componentInstanceRepository.getAllComponentInstances();
+            
+            return COMPONENT_INSTANCE_MAPPER.mapComponentInstanceEntityListToDtoList(componentInstanceEntityList);
+        } catch (PersistenceException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public List<ComponentInstanceDto> getAllComponentInstancesByComponentId(Long id) throws Exception {
-        List<ComponentInstanceEntity> componentInstanceEntityList = this.componentInstanceRepository.getComponentInstanceListByComponentId(id);
-        
-        return COMPONENT_INSTANCE_MAPPER.mapComponentInstanceEntityListToDtoList(componentInstanceEntityList);
+    public List<ComponentInstanceDto> getAllComponentInstancesByComponentId(Long id) throws ServiceException {
+        try {            
+            List<ComponentInstanceEntity> componentInstanceEntityList = this.componentInstanceRepository.getComponentInstanceListByComponentId(id);
+            
+            return COMPONENT_INSTANCE_MAPPER.mapComponentInstanceEntityListToDtoList(componentInstanceEntityList);
+        } catch (PersistenceException e) {
+            throw new ServiceException(e);
+        }
     }
 }
