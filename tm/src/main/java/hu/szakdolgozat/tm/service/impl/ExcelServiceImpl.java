@@ -50,7 +50,7 @@ public class ExcelServiceImpl implements ExcelService {
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet projectSheet = workbook.createSheet("Project details");
             
-            fillProjectDetailsPage(projectEntity, projectSheet);
+            fillProjectDetailsPage(projectEntity, projectSheet, workbook);
             
             if (projectEntity.getComponentEntities() != null && !projectEntity.getComponentEntities().isEmpty()) {
                 for (int i = 0; i < projectEntity.getComponentEntities().size(); i++) {
@@ -68,9 +68,14 @@ public class ExcelServiceImpl implements ExcelService {
                     style.setBorderLeft(BorderStyle.THICK);
                     style.setBorderRight(BorderStyle.THICK);
                     style.setBorderTop(BorderStyle.THICK);
+                    style.setWrapText(true);
                     
                     CellStyle borderStyle = workbook.createCellStyle();
                     borderStyle.setBorderTop(BorderStyle.DOUBLE);
+                    borderStyle.setWrapText(true);
+                    
+                    CellStyle wrapStyle = workbook.createCellStyle();
+                    wrapStyle.setWrapText(true);
 
                     fillMainRow(mainRow, style);
                     setSheetHeader(sheet);
@@ -100,16 +105,20 @@ public class ExcelServiceImpl implements ExcelService {
                                 Row stepRow = sheet.createRow(j + 1 + rowCounter);
                                 Cell stepNumberCell = stepRow.createCell(3);
                                 stepNumberCell.setCellValue(stepEntity.getOrderNumber());
+                                stepNumberCell.setCellStyle(wrapStyle);
                                 
                                 Cell stepDescriptionCell = stepRow.createCell(4);
                                 stepDescriptionCell.setCellValue(stepEntity.getDescription());
+                                stepDescriptionCell.setCellStyle(wrapStyle);
                                 
                                 Cell stepExpectedResultCell = stepRow.createCell(5);
                                 stepExpectedResultCell.setCellValue(stepEntity.getExpectedResult());
+                                stepExpectedResultCell.setCellStyle(wrapStyle);
                                 
                                 Cell stepCommentCell = stepRow.createCell(6);
                                 if (stepEntity.getComment() != null) {
                                     stepCommentCell.setCellValue(stepEntity.getComment());
+                                    stepCommentCell.setCellStyle(wrapStyle);
                                 } else {
                                     stepCommentCell.setCellValue("-");
                                 }               
@@ -156,14 +165,19 @@ public class ExcelServiceImpl implements ExcelService {
             style.setBorderLeft(BorderStyle.THICK);
             style.setBorderRight(BorderStyle.THICK);
             style.setBorderTop(BorderStyle.THICK);
+            style.setWrapText(true);
             
             CellStyle borderStyle = workbook.createCellStyle();
             borderStyle.setBorderTop(BorderStyle.DOUBLE);
+            borderStyle.setWrapText(true);
+            
+            CellStyle wrapStyle = workbook.createCellStyle();
+            wrapStyle.setWrapText(true);
 
             fillMainRow(mainRow, style);
             setSheetHeader(sheet);
             
-            createHeaderRowForComponentExport(componentEntity, componentSheet);
+            createHeaderRowForComponentExport(componentEntity, componentSheet, workbook);
             
             for (int j = 0; j < componentEntity.getCaseEntities().size(); j++) {
                 CaseEntity caseEntity = componentEntity.getCaseEntities().get(j);
@@ -189,16 +203,20 @@ public class ExcelServiceImpl implements ExcelService {
                         Row stepRow = sheet.createRow(j + 1 + rowCounter);
                         Cell stepNumberCell = stepRow.createCell(3);
                         stepNumberCell.setCellValue(stepEntity.getOrderNumber());
+                        stepNumberCell.setCellStyle(wrapStyle);
                         
                         Cell stepDescriptionCell = stepRow.createCell(4);
                         stepDescriptionCell.setCellValue(stepEntity.getDescription());
+                        stepDescriptionCell.setCellStyle(wrapStyle);
                         
                         Cell stepExpectedResultCell = stepRow.createCell(5);
                         stepExpectedResultCell.setCellValue(stepEntity.getExpectedResult());
+                        stepExpectedResultCell.setCellStyle(wrapStyle);
                         
                         Cell stepCommentCell = stepRow.createCell(6);
                         if (stepEntity.getComment() != null) {
                             stepCommentCell.setCellValue(stepEntity.getComment());
+                            stepCommentCell.setCellStyle(wrapStyle);
                         } else {
                             stepCommentCell.setCellValue("-");
                         }               
@@ -221,27 +239,37 @@ public class ExcelServiceImpl implements ExcelService {
         }
     }
     
-    private void fillProjectDetailsPage(ProjectEntity projectEntity, XSSFSheet projectSheet) {
+    private void fillProjectDetailsPage(ProjectEntity projectEntity, XSSFSheet projectSheet, XSSFWorkbook workbook) {
+        
+        CellStyle wrapStyle = workbook.createCellStyle();
+        wrapStyle.setWrapText(true);
+        
         Row nameRow = projectSheet.createRow(0);
         Cell nameLabelCell = nameRow.createCell(0);
         nameLabelCell.setCellValue("Project name:");
+        nameLabelCell.setCellStyle(wrapStyle);
         
         Cell nameCell = nameRow.createCell(1);
         nameCell.setCellValue(projectEntity.getName());
+        nameCell.setCellStyle(wrapStyle);
         
         Row shortDescriptionRow = projectSheet.createRow(1);
         Cell shortDescriptionLabelCell = shortDescriptionRow.createCell(0);
         shortDescriptionLabelCell.setCellValue("Project short description:");
+        shortDescriptionLabelCell.setCellStyle(wrapStyle);
         
         Cell shortDescriptionCell = shortDescriptionRow.createCell(1);
         shortDescriptionCell.setCellValue(projectEntity.getShortDescription());
+        shortDescriptionCell.setCellStyle(wrapStyle);
         
         Row longDescriptionRow = projectSheet.createRow(2);
         Cell longDescriptionLabelCell = longDescriptionRow.createCell(0);
         longDescriptionLabelCell.setCellValue("Project long description:");
+        longDescriptionLabelCell.setCellStyle(wrapStyle);
         
         Cell longDescriptionCell = longDescriptionRow.createCell(1);
         longDescriptionCell.setCellValue(projectEntity.getLongDescription());
+        longDescriptionCell.setCellStyle(wrapStyle);
         
         projectSheet.setColumnWidth(0, 10000);
         projectSheet.setColumnWidth(1, 10000);
@@ -310,34 +338,45 @@ public class ExcelServiceImpl implements ExcelService {
         } 
     }
     
-    private void createHeaderRowForComponentExport(ComponentEntity componentEntity, XSSFSheet componentSheet) {
+    private void createHeaderRowForComponentExport(ComponentEntity componentEntity, XSSFSheet componentSheet, XSSFWorkbook workbook) {
+        CellStyle wrapStyle = workbook.createCellStyle();
+        wrapStyle.setWrapText(true);
+        
         Row nameRow = componentSheet.createRow(0);
         Cell nameLabelCell = nameRow.createCell(0);
         nameLabelCell.setCellValue("Component name:");
+        nameLabelCell.setCellStyle(wrapStyle);
         
         Cell nameCell = nameRow.createCell(1);
         nameCell.setCellValue(componentEntity.getName());
+        nameCell.setCellStyle(wrapStyle);
         
         Row descriptionRow = componentSheet.createRow(1);
         Cell descriptionLabelCell = descriptionRow.createCell(0);
         descriptionLabelCell.setCellValue("Component description:");
+        descriptionLabelCell.setCellStyle(wrapStyle);
         
         Cell descriptionCell = descriptionRow.createCell(1);
         descriptionCell.setCellValue(componentEntity.getDescription());
+        descriptionCell.setCellStyle(wrapStyle);
         
         Row authorRow = componentSheet.createRow(2);
         Cell authorLabelCell = authorRow.createCell(0);
         authorLabelCell.setCellValue("Author:");
+        authorLabelCell.setCellStyle(wrapStyle);
         
         Cell authorCell = authorRow.createCell(1);
         authorCell.setCellValue(componentEntity.getAuthor());
+        authorCell.setCellStyle(wrapStyle);
         
         Row versionRow = componentSheet.createRow(3);
         Cell versionLabelCell = versionRow.createCell(0);
         versionLabelCell.setCellValue("Version:");
+        versionLabelCell.setCellStyle(wrapStyle);
         
         Cell versionCell = versionRow.createCell(1);
         versionCell.setCellValue(componentEntity.getVersion());
+        versionCell.setCellStyle(wrapStyle);
         
         componentSheet.setColumnWidth(0, 10000);
         componentSheet.setColumnWidth(1, 10000);
