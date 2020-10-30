@@ -139,6 +139,83 @@ public class ExcelServiceImpl implements ExcelService {
     public void exportComponentIntoExcep(Long id) throws ServiceException {
         try {
             ComponentEntity componentEntity = this.componentRepository.getComponentEntityById(id);
+            
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet componentSheet = workbook.createSheet("Component details");
+            
+            XSSFSheet sheet = workbook.createSheet(componentEntity.getName());
+            
+            int rowCounter = 0;
+            
+            // Create header row
+            Row mainRow = sheet.createRow(0);
+            rowCounter++;
+            
+            CellStyle style = workbook.createCellStyle();
+            style.setBorderBottom(BorderStyle.THICK);
+            style.setBorderLeft(BorderStyle.THICK);
+            style.setBorderRight(BorderStyle.THICK);
+            style.setBorderTop(BorderStyle.THICK);
+            
+            CellStyle borderStyle = workbook.createCellStyle();
+            borderStyle.setBorderTop(BorderStyle.DOUBLE);
+
+            fillMainRow(mainRow, style);
+            setSheetHeader(sheet);
+            
+            createHeaderRowForComponentExport(componentEntity, componentSheet);
+            
+            for (int j = 0; j < componentEntity.getCaseEntities().size(); j++) {
+                CaseEntity caseEntity = componentEntity.getCaseEntities().get(j);
+                
+                Row row = sheet.createRow(j + rowCounter);
+                
+                Cell caseIdCell = row.createCell(0);
+                caseIdCell.setCellValue(caseEntity.getId());
+                
+                Cell caseNameCell = row.createCell(1);
+                caseNameCell.setCellValue(caseEntity.getName());
+                
+                Cell caseDescriptionCell = row.createCell(2);
+                caseDescriptionCell.setCellValue(caseEntity.getDescription());
+                
+                // create steps
+                for (int k = 0; k < caseEntity.getSteps().size(); k++) {
+                    StepEntity stepEntity = caseEntity.getSteps().get(k);
+                    
+                    if (k == 0) {
+                        createStepRows(row, borderStyle, stepEntity);
+                    } else {
+                        Row stepRow = sheet.createRow(j + 1 + k);
+                        Cell stepNumberCell = stepRow.createCell(3);
+                        stepNumberCell.setCellValue(stepEntity.getOrderNumber());
+                        
+                        Cell stepDescriptionCell = stepRow.createCell(4);
+                        stepDescriptionCell.setCellValue(stepEntity.getDescription());
+                        
+                        Cell stepExpectedResultCell = stepRow.createCell(5);
+                        stepExpectedResultCell.setCellValue(stepEntity.getExpectedResult());
+                        
+                        Cell stepCommentCell = stepRow.createCell(6);
+                        if (stepEntity.getComment() != null) {
+                            stepCommentCell.setCellValue(stepEntity.getComment());
+                        } else {
+                            stepCommentCell.setCellValue("-");
+                        }               
+                        rowCounter++;
+                    }
+                }
+                caseIdCell.setCellStyle(borderStyle);
+                caseNameCell.setCellStyle(borderStyle);
+                caseDescriptionCell.setCellStyle(borderStyle);
+            }
+            
+            System.out.println(componentEntity.getName());
+            FileOutputStream fos = new FileOutputStream("D:\\" + componentEntity.getName() + ".xlsx");
+            workbook.write(fos);
+            
+        } catch (IOException e) {
+            throw new ServiceException(e);
         } catch (PersistenceException e) {
             throw new ServiceException(e);
         }
@@ -231,6 +308,39 @@ public class ExcelServiceImpl implements ExcelService {
             stepCommentCell.setCellValue("-");
             stepCommentCell.setCellStyle(borderStyle);
         } 
+    }
+    
+    private void createHeaderRowForComponentExport(ComponentEntity componentEntity, XSSFSheet componentSheet) {
+        Row nameRow = componentSheet.createRow(0);
+        Cell nameLabelCell = nameRow.createCell(0);
+        nameLabelCell.setCellValue("Component name:");
+        
+        Cell nameCell = nameRow.createCell(1);
+        nameCell.setCellValue(componentEntity.getName());
+        
+        Row descriptionRow = componentSheet.createRow(1);
+        Cell descriptionLabelCell = descriptionRow.createCell(0);
+        descriptionLabelCell.setCellValue("Component description:");
+        
+        Cell descriptionCell = descriptionRow.createCell(1);
+        descriptionCell.setCellValue(componentEntity.getDescription());
+        
+        Row authorRow = componentSheet.createRow(2);
+        Cell authorLabelCell = authorRow.createCell(0);
+        authorLabelCell.setCellValue("Author:");
+        
+        Cell authorCell = authorRow.createCell(1);
+        authorCell.setCellValue(componentEntity.getAuthor());
+        
+        Row versionRow = componentSheet.createRow(3);
+        Cell versionLabelCell = versionRow.createCell(0);
+        versionLabelCell.setCellValue("Version:");
+        
+        Cell versionCell = versionRow.createCell(1);
+        versionCell.setCellValue(componentEntity.getVersion());
+        
+        componentSheet.setColumnWidth(0, 10000);
+        componentSheet.setColumnWidth(1, 10000);
     }
 
 }

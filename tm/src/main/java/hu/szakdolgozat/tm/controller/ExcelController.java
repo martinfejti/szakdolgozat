@@ -1,5 +1,8 @@
 package hu.szakdolgozat.tm.controller;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,9 +26,18 @@ public class ExcelController {
     }
     
     @PostMapping("/exportProject/{id}")
-    public void exportProjectIntoExcel(@PathVariable Long id) throws ControllerException {
+    public void exportProjectIntoExcel(@PathVariable @Min(1) @NotNull Long id) throws ControllerException {
         try {
             this.excelService.exportProjectIntoExcel(id);
+        } catch (ServiceException e) {
+            throw new ControllerException(e);
+        }
+    }
+    
+    @PostMapping("/exportComponent/{id}")
+    public void exportComponentIntoExcel(@PathVariable @Min(1) @NotNull Long id) throws ControllerException {
+        try {
+            this.excelService.exportComponentIntoExcep(id);
         } catch (ServiceException e) {
             throw new ControllerException(e);
         }
