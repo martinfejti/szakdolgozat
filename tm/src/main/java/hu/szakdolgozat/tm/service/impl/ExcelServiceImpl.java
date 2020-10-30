@@ -97,7 +97,7 @@ public class ExcelServiceImpl implements ExcelService {
                             if (k == 0) {
                                 createStepRows(row, borderStyle, stepEntity);
                             } else {
-                                Row stepRow = sheet.createRow(j + 1 + k);
+                                Row stepRow = sheet.createRow(j + 1 + rowCounter);
                                 Cell stepNumberCell = stepRow.createCell(3);
                                 stepNumberCell.setCellValue(stepEntity.getOrderNumber());
                                 
@@ -186,7 +186,7 @@ public class ExcelServiceImpl implements ExcelService {
                     if (k == 0) {
                         createStepRows(row, borderStyle, stepEntity);
                     } else {
-                        Row stepRow = sheet.createRow(j + 1 + k);
+                        Row stepRow = sheet.createRow(j + 1 + rowCounter);
                         Cell stepNumberCell = stepRow.createCell(3);
                         stepNumberCell.setCellValue(stepEntity.getOrderNumber());
                         
