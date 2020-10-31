@@ -42,6 +42,9 @@
           <ng-container *ngIf="selectedView == 'RUN_TEST'">
             <app-component-test [component]="componentForTest"></app-component-test>
           </ng-container>
+          <ng-container *ngIf="selectedView == 'COMPONENT_TEST_RESULTS'">
+            <app-component-test-results [component]="componentTestResults"></app-component-test-results>
+          </ng-container>
           <ng-container *ngIf="selectedView == 'SELECT_PROJECT'">
             <div id="no-project-div">
               Please select an existing project from the <strong>Project List</strong> or create a new one with the <strong>Add New Project</strong> button!

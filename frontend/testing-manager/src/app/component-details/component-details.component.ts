@@ -23,6 +23,10 @@ export class ComponentDetailsComponent implements OnInit {
     this.componentService.notifyOpenTestPage(this.component);
   }
 
+  openComponentTestResultsPage() {
+    this.componentService.notifyOpenComponentTestResults(this.component);
+  }
+
   deleteComponent() {
     this.componentService.deleteComponent(this.component.id).subscribe((result) => {
       console.log(result);

@@ -10,6 +10,8 @@ export class ComponentService {
 
   selectedComponentObservable = new Subject();
   openTestPageObservable = new Subject();
+  openComponentTestResultsObservable = new Subject();
+
 
   constructor(private httpClient: HttpClient) { }
 
@@ -49,5 +51,9 @@ export class ComponentService {
 
   notifyOpenTestPage(component: ComponentModel) {
     this.openTestPageObservable.next(component);
+  }
+
+  notifyOpenComponentTestResults(component: ComponentModel) {
+    this.openComponentTestResultsObservable.next(component);
   }
 }

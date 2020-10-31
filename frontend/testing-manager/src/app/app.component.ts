@@ -23,6 +23,7 @@ export class AppComponent {
   selectedCase: Case;
   selectedStep: Step;
   componentForTest: ComponentModel;
+  componentTestResults: ComponentModel;
 
   constructor(
     private projectService: ProjectService,
@@ -78,6 +79,11 @@ export class AppComponent {
 
     this.runTestService.closeComponentInstanceObservable.subscribe(() => {
       this.selectedView = 'SELECT_PROJECT';
+    });
+
+    this.componentService.openComponentTestResultsObservable.subscribe(result => {
+      this.componentTestResults = result;
+      this.selectedView = 'COMPONENT_TEST_RESULTS';
     });
   }
 
