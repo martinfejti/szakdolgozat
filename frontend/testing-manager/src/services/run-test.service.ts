@@ -16,6 +16,7 @@ export class RunTestService {
   createCaseInstanceObservable = new Subject();
   closeComponentInstanceObservable = new Subject();
   openComponentInstanceDetailsObservable = new Subject();
+  openComponentInstanceResultDetailsObservable = new Subject();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -64,5 +65,9 @@ export class RunTestService {
 
   notifyOpenComponentInstanceDetails(componentInstance: ComponentInstance) {
     this.openComponentInstanceDetailsObservable.next(componentInstance);
+  }
+
+  notifyOpenComponentInstanceResultDetails(componentInstance: ComponentInstance) {
+    this.openComponentInstanceResultDetailsObservable.next(componentInstance);
   }
 }

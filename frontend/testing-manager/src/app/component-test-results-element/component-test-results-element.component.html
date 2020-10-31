@@ -1,6 +1,5 @@
 <ng-container *ngIf="componentInstance">
-    <div class="component-instance-list-element" data-toggle="modal" data-target="#componentInstanceDetails">
+    <div class="component-instance-list-element" (click)="openResultDetails()">
         Created: {{ componentInstance.openDate | date:'medium' }}
     </div>
-    <app-component-test-results-details [componentInstance]="componentInstance"></app-component-test-results-details>
 </ng-container>

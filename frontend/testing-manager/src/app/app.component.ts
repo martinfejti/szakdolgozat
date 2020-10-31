@@ -24,6 +24,7 @@ export class AppComponent {
   selectedStep: Step;
   componentForTest: ComponentModel;
   componentTestResults: ComponentModel;
+  componentTestResultsDetails: ComponentModel;
 
   constructor(
     private projectService: ProjectService,
@@ -84,6 +85,11 @@ export class AppComponent {
     this.componentService.openComponentTestResultsObservable.subscribe(result => {
       this.componentTestResults = result;
       this.selectedView = 'COMPONENT_TEST_RESULTS';
+    });
+
+    this.runTestService.openComponentInstanceResultDetailsObservable.subscribe(result => {
+      this.componentTestResultsDetails = result;
+      this.selectedView = 'COMPONENT_TEST_RESULTS_DETAILS';
     });
   }
 

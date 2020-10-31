@@ -47,6 +47,7 @@ import { StepTestComponent } from './step-test/step-test.component';
 import { ComponentTestResultsComponent } from './component-test-results/component-test-results.component';
 import { ComponentTestResultsElementComponent } from './component-test-results-element/component-test-results-element.component';
 import { ComponentTestResultsDetailsComponent } from './component-test-results-details/component-test-results-details.component';
+import { ChartsModule, ThemeService } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -94,12 +95,14 @@ import { ComponentTestResultsDetailsComponent } from './component-test-results-d
   MatGridListModule,
   MatExpansionModule,
   MatCardModule,
-  MatTabsModule
+  MatTabsModule,
+  ChartsModule
   ],
   providers: [
     ProjectService,
     AddProjectService,
-    EditProjectService
+    EditProjectService,
+    ThemeService
   ],
   bootstrap: [AppComponent]
 })
