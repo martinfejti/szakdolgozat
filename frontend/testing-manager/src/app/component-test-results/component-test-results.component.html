@@ -1,3 +1,10 @@
 <ng-container *ngIf="component">
-    {{ component.name }}
+    <div id="component-name-header-div">
+        <strong>{{ component.name }}</strong> - Component Test Results
+        <div id="component-buttons-div">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" (click)="backToComponentDetails()">Back</button>
+            </div>
+        </div>
+    </div>
 </ng-container>
