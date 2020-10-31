@@ -31,3 +31,9 @@ $primary: rgb(111, 0, 225);
         }
     }
 }
+
+#component-instance-list {
+    padding: 1em;
+    height: 87%;
+    overflow-y: auto;
+}

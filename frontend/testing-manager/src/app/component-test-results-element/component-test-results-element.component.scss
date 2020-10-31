@@ -1,0 +1,13 @@
+$primary: rgb(111, 0, 225);
+
+.component-instance-list-element {
+    width: 100%;
+    border: 1px solid lightgray;
+    padding: 1em;
+    border-radius: 3px;
+
+    &:hover {
+        background: lighten($primary, 50%);
+        cursor: pointer;
+    }
+}
