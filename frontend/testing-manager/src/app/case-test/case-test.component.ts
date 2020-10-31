@@ -3,6 +3,7 @@ import { Case } from './../../models/case';
 import { RunTestService } from './../../services/run-test.service';
 import { ComponentInstance } from './../../models/component-instance';
 import { CaseInstance } from './../../models/case-instance';
+import { ProjectService } from './../../services/project.service';
 
 @Component({
   selector: 'app-case-test',
@@ -17,7 +18,7 @@ export class CaseTestComponent implements OnInit {
   parentComponentInstance: ComponentInstance;
   newCaseInstance: CaseInstance;
 
-  constructor(private runTestService: RunTestService) { }
+  constructor(private runTestService: RunTestService, private projectService: ProjectService) { }
 
   ngOnInit() {
     this.runTestService.createComponentInstanceObservable.subscribe(result => {
@@ -42,6 +43,7 @@ export class CaseTestComponent implements OnInit {
       });
     } else {
       this.runTestService.notifyClosingComponentInstance(this.parentComponentInstance.id);
+      this.projectService.notifyProjectEdition();
     }
 
   }
