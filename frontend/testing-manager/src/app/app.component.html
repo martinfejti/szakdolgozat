@@ -46,7 +46,7 @@
             <app-component-test-results [component]="componentTestResults"></app-component-test-results>
           </ng-container>
           <ng-container *ngIf="selectedView == 'COMPONENT_TEST_RESULTS_DETAILS'">
-              <app-component-test-results-details [componentInstance]="componentTestResultsDetails"></app-component-test-results-details>
+              <app-component-test-results-details [componentInstance]="componentTestResultsDetails" [parentComponent]="componentTestResultsDetailsParentComponent"></app-component-test-results-details>
           </ng-container>
           <ng-container *ngIf="selectedView == 'SELECT_PROJECT'">
             <div id="no-project-div">

@@ -67,7 +67,9 @@ export class RunTestService {
     this.openComponentInstanceDetailsObservable.next(componentInstance);
   }
 
-  notifyOpenComponentInstanceResultDetails(componentInstance: ComponentInstance) {
-    this.openComponentInstanceResultDetailsObservable.next(componentInstance);
+  notifyOpenComponentInstanceResultDetails(componentInstance: ComponentInstance, component: ComponentModel) {
+    console.log(componentInstance);
+    console.log(component);
+    this.openComponentInstanceResultDetailsObservable.next({ci: componentInstance, pc: component});
   }
 }

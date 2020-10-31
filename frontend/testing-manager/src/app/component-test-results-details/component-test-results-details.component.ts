@@ -4,7 +4,7 @@ import { RunTestService } from './../../services/run-test.service';
 import { ComponentService } from './../../services/component.service';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Color, Label, SingleDataSet } from 'ng2-charts';
-import { CaseInstance } from './../../models/case-instance';
+import { Component as ComponentModel } from './../../models/component';
 import { StepInstance } from './../../models/step-instance';
 
 @Component({
@@ -40,13 +40,14 @@ export class ComponentTestResultsDetailsComponent implements OnInit {
 
 
   @Input() componentInstance: ComponentInstance;
+  @Input() parentComponent: ComponentModel;
   pieChartData: number[] = [];
 
   constructor(private runTestService: RunTestService, private componentService: ComponentService) { }
 
   ngOnInit() {
-    console.log('TELEVERT KURVA MODAL ON INIT');
     console.log(this.pieChartData);
+    console.log(this.componentInstance);
     this.setStatusNumbers();
   }
 
@@ -56,6 +57,10 @@ export class ComponentTestResultsDetailsComponent implements OnInit {
 
   public chartHovered(e: any): void {
     console.log(e);
+  }
+
+  backToTestDetails() {
+    this.componentService.notifyOpenComponentTestResults(this.parentComponent);
   }
 
   setStatusNumbers() {
@@ -80,6 +85,7 @@ export class ComponentTestResultsDetailsComponent implements OnInit {
         }
       }
     }
+
     console.log('INSTNACE COLOR DETAILS');
     console.log(okCounter);
     console.log(nokCounter);

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ComponentInstance } from './../../models/component-instance';
+import { Component as ComponentModel } from './../../models/component';
 import { RunTestService } from './../../services/run-test.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { RunTestService } from './../../services/run-test.service';
 export class ComponentTestResultsElementComponent implements OnInit {
 
   @Input() componentInstance: ComponentInstance;
+  @Input() parentComponent: ComponentModel;
   pieChartData: number[] = [];
 
   constructor(private runTestService: RunTestService) { }
@@ -20,7 +22,9 @@ export class ComponentTestResultsElementComponent implements OnInit {
   }
 
   openResultDetails() {
-    this.runTestService.notifyOpenComponentInstanceResultDetails(this.componentInstance);
+    console.log(this.componentInstance);
+    console.log(this.parentComponent);
+    this.runTestService.notifyOpenComponentInstanceResultDetails(this.componentInstance, this.parentComponent);
   }
 
   setStatusNumbers() {

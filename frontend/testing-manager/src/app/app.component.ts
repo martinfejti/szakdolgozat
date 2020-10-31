@@ -8,6 +8,7 @@ import { Case } from './../models/case';
 import { StepService } from './../services/step.service';
 import { Step } from './../models/step';
 import { RunTestService } from './../services/run-test.service';
+import { ComponentInstance } from './../models/component-instance';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,8 @@ export class AppComponent {
   selectedStep: Step;
   componentForTest: ComponentModel;
   componentTestResults: ComponentModel;
-  componentTestResultsDetails: ComponentModel;
+  componentTestResultsDetails: ComponentInstance;
+  componentTestResultsDetailsParentComponent: ComponentModel;
 
   constructor(
     private projectService: ProjectService,
@@ -87,8 +89,13 @@ export class AppComponent {
       this.selectedView = 'COMPONENT_TEST_RESULTS';
     });
 
-    this.runTestService.openComponentInstanceResultDetailsObservable.subscribe(result => {
-      this.componentTestResultsDetails = result;
+    this.runTestService.openComponentInstanceResultDetailsObservable.subscribe(({ci, pc}) => {
+      console.log(ci);
+      console.log(pc);
+      this.componentTestResultsDetails = ci;
+      console.log(this.componentTestResultsDetails);
+      this.componentTestResultsDetailsParentComponent = pc;
+      console.log(this.componentTestResultsDetailsParentComponent);
       this.selectedView = 'COMPONENT_TEST_RESULTS_DETAILS';
     });
   }

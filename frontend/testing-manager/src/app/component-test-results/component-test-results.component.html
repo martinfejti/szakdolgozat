@@ -10,7 +10,7 @@
     <div id="component-instance-list">
         <p><strong>Test Results</strong></p>
         <ng-container *ngFor="let instance of component.componentInstances">
-            <app-component-test-results-element [componentInstance]="instance"></app-component-test-results-element>
+            <app-component-test-results-element [componentInstance]="instance" [parentComponent]="component"></app-component-test-results-element>
         </ng-container>
     </div>
 </ng-container>

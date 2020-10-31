@@ -1,4 +1,4 @@
-<ng-container *ngIf="componentInstance">
+<ng-container *ngIf="componentInstance && parentComponent">
     <div class="component-instance-list-element" (click)="openResultDetails()">
         Created: {{ componentInstance.openDate | date:'medium' }}
     </div>

@@ -1,5 +1,13 @@
-<ng-container *ngIf="componentInstance">
-    <div class="chart">
+<ng-container *ngIf="componentInstance && parentComponent">
+    <div id="component-name-header-div">
+        <strong>{{ parentComponent.name }}</strong> - Component Test Results
+        <div id="component-buttons-div">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" (click)="backToTestDetails()">Back</button>
+            </div>
+        </div>
+    </div>
+    <div id="pie-chart-container">
         <canvas baseChart
             [data]="pieChartData"
             [labels]="pieChartLabels"
@@ -10,5 +18,4 @@
             [legend]="pieChartLegend"
         ></canvas>
     </div>
-    {{ componentInstance.id }}
 </ng-container>
