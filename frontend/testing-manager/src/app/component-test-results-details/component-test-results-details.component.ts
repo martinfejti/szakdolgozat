@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ComponentInstance } from './../../models/component-instance';
+import { RunTestService } from './../../services/run-test.service';
+import { ComponentService } from './../../services/component.service';
 
 @Component({
   selector: 'app-component-test-results-details',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComponentTestResultsDetailsComponent implements OnInit {
 
-  constructor() { }
+  @Input() componentInstance: ComponentInstance;
+
+  constructor(private runTestService: RunTestService, private componentService: ComponentService) { }
 
   ngOnInit() {
   }
