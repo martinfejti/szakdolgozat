@@ -46,6 +46,7 @@ import { CaseTestComponent } from './case-test/case-test.component';
 import { StepTestComponent } from './step-test/step-test.component';
 import { ComponentTestResultsComponent } from './component-test-results/component-test-results.component';
 import { ComponentTestResultsElementComponent } from './component-test-results-element/component-test-results-element.component';
+import { ComponentTestResultsDetailsComponent } from './component-test-results-details/component-test-results-details.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { ComponentTestResultsElementComponent } from './component-test-results-e
     CaseTestComponent,
     StepTestComponent,
     ComponentTestResultsComponent,
-    ComponentTestResultsElementComponent
+    ComponentTestResultsElementComponent,
+    ComponentTestResultsDetailsComponent
   ],
   imports: [
   HttpClientModule,
