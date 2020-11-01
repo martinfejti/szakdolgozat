@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkStepperModule } from '@angular/cdk/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule,
   MatButtonModule,
   MatButtonToggleModule,
@@ -80,6 +81,7 @@ import { ChartsModule, ThemeService } from 'ng2-charts';
   HttpClientModule,
   BrowserModule,
   FormsModule,
+  ReactiveFormsModule,
   BrowserAnimationsModule,
   DragDropModule,
   CdkStepperModule,
@@ -96,7 +98,8 @@ import { ChartsModule, ThemeService } from 'ng2-charts';
   MatExpansionModule,
   MatCardModule,
   MatTabsModule,
-  ChartsModule
+  ChartsModule,
+  MatFormFieldModule
   ],
   providers: [
     ProjectService,

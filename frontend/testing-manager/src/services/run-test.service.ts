@@ -35,11 +35,12 @@ export class RunTestService {
     });
   }
 
-  createStepInstance(parentCaseInstance: CaseInstance, step: Step, statusString: string) {
+  createStepInstance(parentCaseInstance: CaseInstance, step: Step, statusString: string, stepComment: string) {
     return this.httpClient.post('http://localhost:8080/stepInstance', {
       stepId: step.id,
       caseInstanceId: parentCaseInstance.id,
-      status: statusString
+      status: statusString,
+      comment: stepComment
     });
   }
 

@@ -12,12 +12,13 @@ export class StepTestComponent implements OnInit {
 
   @Input() step: Step;
   parentCaseInstance: CaseInstance;
-  isStepDone: boolean;
+  isStepDone = false;
+  stepInstanceStatus: string;
+  stepComment: string;
 
   constructor(private runTestService: RunTestService) { }
 
   ngOnInit() {
-    this.isStepDone = false;
     this.runTestService.createCaseInstanceObservable.subscribe(caseResult => {
       this.parentCaseInstance = caseResult;
       console.log('new parent case', this.parentCaseInstance);
@@ -25,6 +26,7 @@ export class StepTestComponent implements OnInit {
 
   }
 
+  /*
   createStepInstance(status: string) {
     if (!this.isStepDone) {
       this.isStepDone = true;
@@ -35,6 +37,28 @@ export class StepTestComponent implements OnInit {
       });
     } else {
       alert('Tha step instance has already been created!');
+    }
+  }*/
+
+  setStepInstanceStatus(statusString: string) {
+    if (this.isStepDone !== true) {
+      this.stepInstanceStatus = statusString;
+    } else {
+      alert('Step test is already finished!');
+    }
+  }
+
+  changeCheckbox(event: any) {
+    if (this.isStepDone === false && this.stepInstanceStatus) {
+      this.runTestService.createStepInstance(this.parentCaseInstance, this.step, this.stepInstanceStatus, this.stepComment)
+      .subscribe(result => {
+        console.log(result);
+        this.isStepDone = true;
+      });
+    } else if (this.isStepDone === true) {
+      alert('Step test is already finished!');
+    } else if (!this.stepInstanceStatus) {
+      alert('Please select an outcome according to your test result!');
     }
   }
 

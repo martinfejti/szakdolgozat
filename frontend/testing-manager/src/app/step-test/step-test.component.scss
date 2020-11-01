@@ -5,7 +5,7 @@
     border-radius: 3px;
 
     #step-list-element-order-number-div {
-        width: 10%;
+        width: 5%;
         float: left;
         border-right: 1px solid white;
         height: 100%;
@@ -15,27 +15,29 @@
     }
 
     #step-list-element-description-div {
-        width: 30%;
+        width: 20%;
         float: left;
         border-right: 1px solid white;
         height: 100%;
         line-height: 10vh;
         text-align: center;
         vertical-align: middle;
+        font-size: 12px;
     }
 
     #step-list-element-expected-result-div {
-        width: 30%;
+        width: 20%;
         float: left;
         border-right: 1px solid white;
         height: 100%;
         line-height: 10vh;
         text-align: center;
         vertical-align: middle;
+        font-size: 12px;
     }
 
     #step-list-element-status-container-div {
-        width: 30%;
+        width: 25%;
         float: left;
         height: 100%;
         line-height: 10vh;
@@ -55,6 +57,40 @@
                 background-color: white;
                 color: mediumpurple;
             }
+        }
+    }
+
+    #is-step-finished-checkbox {
+        width: 5%;
+        float: right;
+        border-left: 1px solid white;
+        height: 100%;
+        line-height: 10vh;
+        text-align: center;
+        vertical-align: middle;
+
+        input {
+            height: 50%;
+            width: 50%;
+            vertical-align: center;
+        }
+    }
+
+    #step-comment {
+        width: 24%;
+        float: left;
+        border-right: 1px solid white;
+        height: 100%;
+        line-height: 10vh;
+        text-align: center;
+        vertical-align: middle;
+        padding: 1em;
+
+        textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            font-size: 12px;
         }
     }
 }

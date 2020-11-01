@@ -4,9 +4,16 @@
         <div id="step-list-element-description-div">{{ step.description }}</div>
         <div id="step-list-element-expected-result-div">{{ step.expectedResult }}</div>
                 <div id="step-list-element-status-container-div">
-                    <div class="step-list-element-status-div" (click)="createStepInstance('OK')" [ngStyle]="{'cursor': (isStepDone) ? 'no-drop' : 'pointer'}" [ngStyle]="   {'background-color': (isStepDone) ? 'green' : 'white'}">OK</div>
-                    <div class="step-list-element-status-div" (click)="createStepInstance('NOK')" [ngStyle]="{'cursor': (isStepDone) ? 'no-drop' : 'pointer'}" [ngStyle]="{'background-color': (isStepDone) ? 'yellow' : 'white'}">NOK</div>
-                    <div class="step-list-element-status-div" (click)="createStepInstance('ERR')" [ngStyle]="{'cursor': (isStepDone) ? 'no-drop' : 'pointer'}" [ngStyle]="{'background-color': (isStepDone) ? 'red' : 'white'}">ERR</div>
+                    <div class="step-list-element-status-div" (click)="setStepInstanceStatus('OK')" [ngStyle]="isStepDone ? {'cursor': 'no-drop'} : {'cursor': 'pointer'}">OK</div>
+                    <div class="step-list-element-status-div" (click)="setStepInstanceStatus('NOK')" [ngStyle]="isStepDone ? {'cursor': 'no-drop'} : {'cursor': 'pointer'}">NOK</div>
+                    <div class="step-list-element-status-div" (click)="setStepInstanceStatus('ERR')" [ngStyle]="isStepDone ? {'cursor': 'no-drop'} : {'cursor': 'pointer'}">ERR</div>
                 </div>
+        
+        <div id="is-step-finished-checkbox">
+            <input type="checkbox" (change)="changeCheckbox($event)" [disabled]="isStepDone"required>
+        </div>
+        <div id="#step-comment">
+            <textarea type="text" [(ngModel)]="stepComment" placeholder="comment"></textarea>
+        </div>
     </div>
 </ng-container>
