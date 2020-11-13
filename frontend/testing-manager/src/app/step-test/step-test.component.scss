@@ -19,10 +19,11 @@
         float: left;
         border-right: 1px solid white;
         height: 100%;
-        line-height: 10vh;
+        // line-height: 10vh;
         text-align: center;
         vertical-align: middle;
         font-size: 12px;
+        word-wrap: break-word;
     }
 
     #step-list-element-expected-result-div {
@@ -30,10 +31,11 @@
         float: left;
         border-right: 1px solid white;
         height: 100%;
-        line-height: 10vh;
+        // line-height: 10vh;
         text-align: center;
         vertical-align: middle;
         font-size: 12px;
+        word-wrap: break-word;
     }
 
     #step-list-element-status-container-div {

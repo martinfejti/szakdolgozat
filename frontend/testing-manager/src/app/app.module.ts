@@ -49,6 +49,7 @@ import { ComponentTestResultsComponent } from './component-test-results/componen
 import { ComponentTestResultsElementComponent } from './component-test-results-element/component-test-results-element.component';
 import { ComponentTestResultsDetailsComponent } from './component-test-results-details/component-test-results-details.component';
 import { ChartsModule, ThemeService } from 'ng2-charts';
+import { UsersGuideComponent } from './users-guide/users-guide.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { ChartsModule, ThemeService } from 'ng2-charts';
     StepTestComponent,
     ComponentTestResultsComponent,
     ComponentTestResultsElementComponent,
-    ComponentTestResultsDetailsComponent
+    ComponentTestResultsDetailsComponent,
+    UsersGuideComponent
   ],
   imports: [
   HttpClientModule,

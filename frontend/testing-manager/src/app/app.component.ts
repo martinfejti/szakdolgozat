@@ -59,7 +59,6 @@ export class AppComponent {
     });
 
     this.componentService.selectedComponentObservable.subscribe((result) => {
-      console.log('NEW COMPO APP COMP', result);
       this.selectedComponent = result;
       this.selectedView = 'COMPONENT_DETAILS';
     });
@@ -97,6 +96,10 @@ export class AppComponent {
       this.componentTestResultsDetailsParentComponent = pc;
       console.log(this.componentTestResultsDetailsParentComponent);
       this.selectedView = 'COMPONENT_TEST_RESULTS_DETAILS';
+    });
+
+    this.projectService.selectProjectObservable.subscribe(() => {
+      this.selectedView = 'SELECT_PROJECT';
     });
   }
 

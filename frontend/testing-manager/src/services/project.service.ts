@@ -12,6 +12,7 @@ export class ProjectService {
   editedProjectObservable = new Subject();
   deletedProjectObservable = new Subject();
   selectedProjectObservable = new Subject();
+  selectProjectObservable = new Subject();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -38,5 +39,9 @@ export class ProjectService {
 
   notifySelectedProject(project: Project) {
     this.selectedProjectObservable.next(project);
+  }
+
+  notifySelectProject() {
+    this.selectProjectObservable.next();
   }
 }

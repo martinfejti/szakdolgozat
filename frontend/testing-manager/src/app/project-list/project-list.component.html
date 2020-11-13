@@ -7,4 +7,10 @@
                 </ng-container>
         </div>     
 </ng-container>
+<ng-container *ngIf="!projects">
+        <p>Loading...</p>
+</ng-container>
+<ng-container *ngIf="projects.length === 0">
+        <p>Please create a project!</p>
+</ng-container>
 
