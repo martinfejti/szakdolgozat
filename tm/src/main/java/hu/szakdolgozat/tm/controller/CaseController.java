@@ -79,4 +79,13 @@ public class CaseController {
             throw new ControllerException(e);
         }
     }
+    
+    @GetMapping("/getCaseById/{id}")
+    public CaseDto getCaseById(@PathVariable @Min(1) @NotNull Long id) throws ControllerException {
+        try {
+            return this.caseService.getCaseById(id);
+        } catch (ServiceException e) {
+            throw new ControllerException(e);
+        }
+    }
 }

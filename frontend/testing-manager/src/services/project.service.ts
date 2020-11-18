@@ -44,4 +44,8 @@ export class ProjectService {
   notifySelectProject() {
     this.selectProjectObservable.next();
   }
+
+  getProjectById(id: number) {
+    return this.httpClient.get(`http://localhost:8080/project/${id}`, {});
+  }
 }

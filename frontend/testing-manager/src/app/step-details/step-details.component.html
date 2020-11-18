@@ -3,6 +3,7 @@
         <strong>Step's order number: {{ step.orderNumber }}</strong> - Step
         <div id="step-buttons-div">
             <div class="btn-group">
+                <button type="button" class="btn btn-primary" (click)="backToParent()">Back</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editStepModal">Edit</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteStepModal">Delete</button>
             </div>

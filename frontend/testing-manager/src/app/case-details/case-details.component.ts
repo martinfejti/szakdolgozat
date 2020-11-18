@@ -4,6 +4,7 @@ import { CaseService } from './../../services/case.service';
 import { ProjectService } from './../../services/project.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Step } from './../../models/step';
+import { ComponentService } from './../../services/component.service';
 
 @Component({
   selector: 'app-case-details',
@@ -15,7 +16,7 @@ export class CaseDetailsComponent implements OnInit {
   @Input() testCase: Case;
   @ViewChild('closeBtn', {static: false}) closeBtn: ElementRef;
 
-  constructor(private caseService: CaseService, private projectService: ProjectService) { }
+  constructor(private caseService: CaseService, private projectService: ProjectService, private componentService: ComponentService) { }
 
   ngOnInit() {
     this.testCase.steps = this.testCase.steps.sort((a, b) => a.orderNumber - b.orderNumber);
@@ -51,6 +52,15 @@ export class CaseDetailsComponent implements OnInit {
     }, error => {
       console.log(error);
       alert('A problem has occured during case edition!');
+    });
+  }
+
+  backToParent() {
+    this.componentService.getComponentById(this.testCase.componentId).subscribe(result => {
+      console.log(result);
+      this.componentService.notifySelectedComponent(result);
+    }, error => {
+      console.log(error);
     });
   }
 }

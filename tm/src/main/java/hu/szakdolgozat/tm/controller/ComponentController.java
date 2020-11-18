@@ -70,4 +70,13 @@ public class ComponentController {
             throw new ControllerException(e);
         }
     }
+    
+    @GetMapping("/getComponentById/{id}")
+    public ComponentDto getComponentById(@PathVariable @Min(1) @NotNull Long id) throws ControllerException {
+        try {
+            return this.componentService.getComponentById(id);
+        } catch (ServiceException e)  {
+            throw new ControllerException(e);
+        }
+    }
 }

@@ -17,4 +17,6 @@ public interface ComponentService {
     
     public List<ComponentDto> getComponentsByProjectId(Long id) throws ServiceException;
     
+    public ComponentDto getComponentById(Long id) throws ServiceException;
+    
 }

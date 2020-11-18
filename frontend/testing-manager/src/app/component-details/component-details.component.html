@@ -3,6 +3,7 @@
         <strong>{{ component.name }}</strong> - Component
         <div id="component-buttons-div">
             <div class="btn-group">
+                <button type="button" class="btn btn-primary" style="width: 20%" (click)="backToParent()">Back</button>
                 <button type="button" class="btn btn-primary" (click)="openTestPage()">Test</button>
                 <button type="button" class="btn btn-primary" (click)="openComponentTestResultsPage()">Results</button>
                 <button type="button" class="btn btn-primary" (click)="exportComponent()">Export</button>

@@ -54,4 +54,13 @@ export class ComponentDetailsComponent implements OnInit {
     }
   }
 
+  backToParent() {
+    this.projectService.getProjectById(this.component.projectId).subscribe(result => {
+      console.log(result);
+      this.projectService.notifySelectedProject(result);
+    }, error => {
+      console.log(error);
+    });
+  }
+
 }

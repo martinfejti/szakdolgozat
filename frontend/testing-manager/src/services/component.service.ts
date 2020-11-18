@@ -56,4 +56,8 @@ export class ComponentService {
   notifyOpenComponentTestResults(component: ComponentModel) {
     this.openComponentTestResultsObservable.next(component);
   }
+
+  getComponentById(id: number) {
+    return this.httpClient.get(`http://localhost:8080/component/getComponentById/${id}`, {});
+  }
 }

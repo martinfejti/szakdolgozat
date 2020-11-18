@@ -116,4 +116,15 @@ public class CaseServiceImpl implements CaseService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public CaseDto getCaseById(Long id) throws ServiceException {
+        try {
+            CaseEntity caseEntity = this.caseRepository.getCaseEntityById(id);
+            
+            return CASE_MAPPER.mapCaseEntityToDto(caseEntity);
+        } catch (PersistenceException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

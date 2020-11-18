@@ -80,11 +80,22 @@ public class ComponentServiceImpl implements ComponentService {
         }
     }
     
+    @Override
+    public ComponentDto getComponentById(Long id) throws ServiceException {
+        try {
+            ComponentEntity componentEntity = this.componentRepository.getComponentEntityById(id);
+            
+            return COMPONENT_MAPPER.mapComponentEntityToDto(componentEntity);
+        } catch (PersistenceException e) {
+            throw new ServiceException(e);
+        }
+    }
+    
     private void setUpdatedFieldsToComponent(ComponentEntity entityToUpdate, UpdateComponentDto updateComponentDto) {
         entityToUpdate.setName(updateComponentDto.getName());
         entityToUpdate.setDescription(updateComponentDto.getDescription());
         entityToUpdate.setAuthor(updateComponentDto.getAuthor());
         entityToUpdate.setVersion(updateComponentDto.getVersion());
     }
-    
+
 }

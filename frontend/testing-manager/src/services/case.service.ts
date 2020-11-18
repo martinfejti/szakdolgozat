@@ -54,4 +54,7 @@ export class CaseService {
     this.selectedCaseObservable.next(testCase);
   }
 
+  getParentCaseForStep(id: number) {
+    return this.httpClient.get(`http://localhost:8080/case/getCaseById/${id}`, {});
+  }
 }

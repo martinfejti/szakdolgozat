@@ -19,4 +19,5 @@ public interface CaseService {
     
     public List<CaseDto> getCaseListByComponentId(Long id) throws ServiceException;
     
+    public CaseDto getCaseById(Long id) throws ServiceException;
 }
